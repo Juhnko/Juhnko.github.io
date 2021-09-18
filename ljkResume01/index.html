@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    梁俊可软件工程师简历
+  </title>
+  <meta name="keywords" content="Java软件工程师简历,Java,周思伟的简历,試毅-思伟的简历,个人博客,Java软件工程师">
+  <meta name="description" content="周思伟Java软件工程师的个人简历">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="fragment" content="!" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta http-equiv="expires" content="0" />
+  <meta http-equiv="pragma" content="no-cache" />
+  <script>
+    (function () {
+      function autoRootFontSize() {
+        const width = Math.min(screen.width, document.documentElement.getBoundingClientRect().width);
+        document.documentElement.style.fontSize = width > 600 ? '16px' : (width / 750) * 32 + 'px';
+      }
+      window.addEventListener('resize', autoRootFontSize);
+      autoRootFontSize();
+    })();
+  </script>
+<link rel="shortcut icon" href="favicon.ico"><style>/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}</style><link href="css/main.3bf38d59.css" rel="stylesheet"><link rel="preload" href="js/vendors.47652aa4.js" as="script"/><link rel="preload" href="js/main.4f4e0fd0.js" as="script"/></head>
+
+<body id="app" style="display: none">
+  <!-- header -->
+  <header class="header">
+    <div class="title-c">
+      <div class="title" v-class="isShowNav?'-rotate':''" v-text="header.titleList[pageIndex].title"
+        v-on:click="titleHandler($event,pageIndex)"></div>
+      <div class="title-pc" v-text="header.titleList[pageIndex].title" v-show="pageIndex !== 0 && isPc"></div>
+    </div>
+    <div class="language">
+      <div class="-c" v-class="selectedLang==1?'-selectEn':''">
+        <span class="-item" v-class="selectedLang == $index?'-selected':''" v-for="item in header.langList"
+          v-text="item" v-on:click="switchLang($index)"></span>
+      </div>
+    </div>
+    <div class="nav" v-class="isShowNav?'show-nav':''">
+      <ul class="-list">
+        <li v-class="pageIndex === $index?'-cur-index':''" v-for="item in header.titleList">
+          <span v-text="item.title" v-on:click="directToPage($index)"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-dot">
+      <ul>
+        <li v-class="pageIndex == $index?'-cur-index':''" class="nav-dot-item" v-for="item in header.titleList">
+          <em v-on:click="directToPage($index)">
+            <img v-src="item.svg" alt="" />
+          </em>
+          <span class="-title" v-text="item.title"></span>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <!-- main -->
+  <main id="fullpage">
+    <!-- 首页 -->
+    <section class="overview">
+      <div class="content">
+        <div class="info">
+          <div class="photo"></div>
+          <ul class="-list">
+            <li class="-item" v-for="item in overview.infoList" v-text="item"></li>
+          </ul>
+        </div>
+        <div class="des">
+          <p class="quote" v-text="overview.quote"></p>
+          <div class="des-list">
+            <p v-for="item in overview.desList" v-text="item"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 能力 -->
+    <section class="skill">
+      <div class="content">
+        <div class="skill-circle">
+          <ul class="out">
+            <li class="item" v-style="item.bg" v-for="item in skill.outCircleList" v-text="item.name"></li>
+          </ul>
+          <ul class="inner">
+            <li class="inner-item" v-style="item.bg" v-for="item in skill.innerCircleList" v-text="item.name"></li>
+          </ul>
+        </div>
+        <div class="des" v-class="isEng?'-des-en':''">
+          <p v-for="item in skill.desList" v-text="item"></p>
+          <p v-for="item in skill.links">
+            <span v-text="item.title"></span> ➡️
+            <a class="links" v-href="item.url" v-text="item.des" target="_blank"></a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- 经历 -->
+    <section class="experience">
+      <div class="content">
+        <div class="slider">
+          <div class="slider-container">
+            <div class="left">
+              <div class="img" v-style="expCur.img"></div>
+              <h4 v-text="expCur.title"></h4>
+              <p class="-post">"<span v-text="expCur.post"></span>"</p>
+            </div>
+            <div class="right">
+              <p class="-time" v-text="expCur.time"></p>
+              <ul class="-list">
+                <li class="exp-item" v-for="item in expCur.contentList" v-text="item"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="shout-cut">
+          <ul>
+            <li v-class="$index == selectExpIndex?'-selected':''" v-for="item in exp.expList"
+              v-on:click="switchExp($event,$index)"></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- 作品集 -->
+    <section class="work">
+      <div class="content">
+        <ul class="work-list">
+          <li class="work-list-item" v-for="item in works.worksList">
+            <div class="-title">
+              <a class="-link" v-text="item.title" v-href="item.url" target="_blank"></a>
+            </div>
+            <p class="-des" v-class="isEng?'-work-des-en':''" v-text="item.des"></p>
+            <div class="-qrcode" v-if="item.mini">
+              <img class="-img" v-src="item.mini" />
+              <p class="-des" v-text="isEng?'(Press in WeChat)':'（微信内长按识别）'"></p>
+            </div>
+            <a v-href="item.url" target="_blank"><img v-src="item.img.src" class="img" v-alt="item.img.alt" /></a>
+            <div class="work-link" v-if="item.url">
+              <a class="-img" v-href="item.url" target="_blank"></a>
+            </div>
+          </li>
+        </ul>
+        <div class="more">
+          <a href="https://github.com/JoeyBling" target="_blank" v-text="works.viewMore"></a>
+        </div>
+        <div class="switch" v-on:click="switchWork($event)">
+          <i class="left" v-style="workIndex===0?{filter:'brightness(70%)'}:{}"></i>
+          <i class="right" v-style="workIndex===works.worksList.length-1?{filter:'brightness(70%)'}:{}"></i>
+        </div>
+      </div>
+    </section>
+    <!-- 联系我 -->
+    <section class="contact">
+      <div class="content">
+        <div class="words" v-class="isEng?'words-en':'' ">
+          <span v-for="item in contact.desList1" v-text="item"></span>
+        </div>
+        <div class="idea">
+          <p v-for="item in contact.desList2" v-text="item"></p>
+        </div>
+        <p v-for="item in contact.links">
+          <span v-text="item.title"></span> ➡️
+          <a class="links" v-href="item.url" v-text="item.des" target="_blank"></a>
+        </p>
+        <!-- <div class="download">
+            <div class="title" v-text="contact.download"></div>
+            <div class="list">
+              <a v-href="item.url" target="_blank" v-for="item in contact.fileList " v-text="item.title">item.title</a>
+            </div>
+          </div> -->
+        <div class="way">
+          <a class="way-item" v-title="item.title" v-for="item in contact.typeList" v-href="item.url" target="_blank">
+            <img class="way-item-img" v-src="item.icon" alt="" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- footer -->
+  <footer v-show="pageIndex === 4">
+    <div class="github">
+      <iframe src="https://ghbtns.com/github-btn.html?user=JoeyBling&repo=cv&type=star&count=true&size=small"
+        frameborder="0" scrolling="0"></iframe>
+      <iframe src="https://ghbtns.com/github-btn.html?user=JoeyBling&repo=cv&type=fork&count=true&size=small"
+        frameborder="0" scrolling="0"></iframe>
+    </div>
+    <p v-for="item in footer" v-text="item"></p>
+    <p>&copy; 2016-2019 <a href="https://gitee.com/zhousiwei" target="_blank">梁俊可</a></p>
+  </footer>
+<script>!function(e){function r(r){for(var n,l,f=r[0],i=r[1],a=r[2],c=0,s=[];c<f.length;c++)l=f[c],Object.prototype.hasOwnProperty.call(o,l)&&o[l]&&s.push(o[l][0]),o[l]=0;for(n in i)Object.prototype.hasOwnProperty.call(i,n)&&(e[n]=i[n]);for(p&&p(r);s.length;)s.shift()();return u.push.apply(u,a||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,f=1;f<t.length;f++){var i=t[f];0!==o[i]&&(n=!1)}n&&(u.splice(r--,1),e=l(l.s=t[0]))}return e}var n={},o={1:0},u=[];function l(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,l),t.l=!0,t.exports}l.m=e,l.c=n,l.d=function(e,r,t){l.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},l.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},l.t=function(e,r){if(1&r&&(e=l(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(l.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)l.d(t,n,function(r){return e[r]}.bind(null,n));return t},l.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return l.d(r,"a",r),r},l.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},l.p="";var f=window.webpackJsonp=window.webpackJsonp||[],i=f.push.bind(f);f.push=r,f=f.slice();for(var a=0;a<f.length;a++)r(f[a]);var p=i;t()}([]);</script><script type="text/javascript" src="js/vendors.47652aa4.js"></script><script type="text/javascript" src="js/main.4f4e0fd0.js"></script></body>
+
+</html>

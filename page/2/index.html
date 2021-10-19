@@ -247,7 +247,7 @@
             
 
   
-    <article id="post-mySqlNote/10_MySQL_第九课_GO连接MySQL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vrARMRNote/Hololens开发_工程部署发布" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -255,7 +255,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/mySqlNote/10_MySQL_%E7%AC%AC%E4%B9%9D%E8%AF%BE_GO%E8%BF%9E%E6%8E%A5MySQL/" target="_blank">10_MySQL_第九课_GO连接MySQL</a>
+	  <a class="article-title" href="/2021/10/19/vrARMRNote/Hololens%E5%BC%80%E5%8F%91_%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2%E5%8F%91%E5%B8%83/" target="_blank">Hololens开发_工程部署发布</a>
   
     </h1>
   
@@ -263,8 +263,8 @@
 
   
   
-<a href="/2021/10/19/mySqlNote/10_MySQL_%E7%AC%AC%E4%B9%9D%E8%AF%BE_GO%E8%BF%9E%E6%8E%A5MySQL/" class="archive-article-date">
-        <time datetime="2021-10-19T06:42:39.395Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/vrARMRNote/Hololens%E5%BC%80%E5%8F%91_%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2%E5%8F%91%E5%B8%83/" class="archive-article-date">
+        <time datetime="2021-10-19T07:27:51.743Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -276,33 +276,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>客户端：mysql-Front、cmd、navicate、go编辑器</p>
-<ul>
-<li>go语言没有提供任何官方的数据库驱动，所以需要安装第三方函数库。</li>
-<li>github上安装，安装后需要配置环境变量</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get github.com/go-sql-driver/mysql        # 将从github上下载的第三方函数库下载到gopath路径下</span><br></pre></td></tr></table></figure>
-
-<p>这一命令会从代码中获取驱动的具体代码，并将这些代码放置到包库中，当需要用到驱动的时候，编辑器会把驱动代码与用户编写的代码一同编译。</p>
-<h3 id="通过go连接数据库"><a href="#通过go连接数据库" class="headerlink" title="通过go连接数据库"></a>通过go连接数据库</h3><ul>
-<li><strong>01、在src目录下创建demo.go 文件，导入数据库驱动</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">	&quot;database/sql&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	_&quot;github.com/go-sql-driver/mysql&quot; //使用驱动，不用的时候不报错</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<p>注意：程序在操作数据库的时候只需要用到<strong>database/sql</strong>,</p>
-<p> 而不需要直接使用数据库驱动，所以程序在导入数据库驱动的时候，将这个包的名字设置成下划线。</p>
-<ul>
-<li><strong>02、通过sql.open()连接数据库</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql.open(驱动名，数据源dsn)（*DB,err）</span><br></pre></td></tr></table></figure>
-
-<p>数据源语法： “用户名:密码@[连接方式]（主机名:端口号）/ 数据库名”</p>
-<p>注意：open() 在执行时不会真正的与数据库进行连接，只是设置连接数据库需要的参数。</p>
-<p>Ping()方法才是连接数据库。</p>
-<ul>
-<li><strong>03、执行SQL语句</strong></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import (</span><br><span class="line">	&quot;database/sql&quot;</span><br><span class="line">	&quot;fmt&quot;</span><br><span class="line">	_ &quot;github.com/go-sql-driver/mysql&quot; // 使用驱动，不用的时候不报错</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">	// &quot;用户名：密码@[连接方式](主机名：端口号)/数据库名&quot;</span><br><span class="line">	db, _ := sql.Open(&quot;mysql&quot;, &quot;root:liang521@(127.0.0.1:3306)/MyGameDB&quot;) // 设置连接参数</span><br><span class="line">	defer db.Close() // 关闭数据库</span><br><span class="line">	err := db.Ping() // 连接数据库</span><br><span class="line">	if err!=nil &#123;</span><br><span class="line">		fmt.Println(&quot;数据库连接失败！！！&quot;,err.Error())</span><br><span class="line">		return</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(&quot;数据库连接成功！！！&quot;)</span><br><span class="line"></span><br><span class="line">	//操作一：执行数据操作语句</span><br><span class="line">	&#123;</span><br><span class="line">		//now := time.Now().Unix()</span><br><span class="line">		//timeLayout := &quot;2006-01-02 15:04:05&quot; // go语言固定日期模版</span><br><span class="line">		//timeStr := time.Unix(now, 0).Format(timeLayout)</span><br><span class="line">		//sqlStr :=&quot;insert into users values(null,&#x27;tom44&#x27;,&#x27;1234567&#x27;,&#x27;&quot;+timeStr+&quot;&#x27;)&quot;</span><br><span class="line">		//result, _ := db.Exec(sqlStr) //执行SQL语句</span><br><span class="line">		//n, _:= result.RowsAffected() //获取受影响的记录数</span><br><span class="line">		//fmt.Println(&quot;受影响的记录为：&quot;,n)&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//操作二：执行预处理语句</span><br><span class="line">	&#123;</span><br><span class="line">		//now := time.Now().Unix()</span><br><span class="line">		//timeLayout := &quot;2006-01-02 15:04:05&quot; // go语言固定日期模版</span><br><span class="line">		//timeStr := time.Unix(now, 0).Format(timeLayout)</span><br><span class="line">		//</span><br><span class="line">		//user11:=[2][4] string&#123;&#123;&quot;298&quot;,&quot;ketty22&quot;,&quot;123&quot;,timeStr&#125;,&#123;&quot;299&quot;,&quot;rose22&quot;,&quot;123&quot;,timeStr&#125;&#125;</span><br><span class="line">		//stmt, err0:= db.Prepare(&quot;insert into users values (?,?,?,?)&quot;) //获取预处理</span><br><span class="line">		//if err0!=nil &#123;</span><br><span class="line">		//	fmt.Println(&quot;文件插入有误&quot;,err0.Error())</span><br><span class="line">		//	return</span><br><span class="line">		//&#125;</span><br><span class="line">		//for _, user := range user11 &#123;</span><br><span class="line">		//	result, err02 := stmt.Exec(user[0], user[1],user[2],user[3]) //调用预处理语句</span><br><span class="line">		//	if err02!=nil &#123;</span><br><span class="line">		//		fmt.Println(&quot;执行预处理有误！&quot;,err02.Error())</span><br><span class="line">		//	&#125;</span><br><span class="line">		//	n, _ := result.RowsAffected()</span><br><span class="line">		//	fmt.Println(&quot;影响到的行数为：&quot;,n)</span><br><span class="line">		//&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//操作三：单行查询</span><br><span class="line">	&#123;</span><br><span class="line">		//var id,name,pwd,date string</span><br><span class="line">		//queryRow := db.QueryRow(&quot;select * from users where id=198&quot;) //QueryRow() 获取一行数据</span><br><span class="line">		////fmt.Printf(&quot;%T&quot;,queryRow)</span><br><span class="line">		//queryRow.Scan(&amp;id,&amp;name,&amp;pwd,&amp;date) //将查询到的第一行数据放到id,name,pwd,date中</span><br><span class="line">		//fmt.Println(id,name,pwd,date)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//操作四：多行查询</span><br><span class="line">	var id,name,pwd,date string</span><br><span class="line">	rows, _ := db.Query(&quot;select * from users&quot;) //Query() 获取所有数据</span><br><span class="line">	fmt.Println(&quot;ID&quot;,&quot;姓名&quot;,&quot;密码&quot;,&quot;日期&quot;)</span><br><span class="line">	for rows.Next()&#123;                    //循环显示所有的数据</span><br><span class="line">		rows.Scan(&amp;id,&amp;name,&amp;pwd,&amp;date) //将查询到的第一行数据放到id,name,pwd,date中</span><br><span class="line">		fmt.Println(id,name,pwd,date)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <h1 id="HoloLens2-工程发布及真机部署（3种方法）"><a href="#HoloLens2-工程发布及真机部署（3种方法）" class="headerlink" title="HoloLens2 工程发布及真机部署（3种方法）"></a>HoloLens2 工程发布及真机部署（3种方法）</h1><p>HoloLens2 已经发布几个月了，这里我们针对HoloLens2 的工程发布以及真机部署做一个总结</p>
+<h2 id="一、软件"><a href="#一、软件" class="headerlink" title="一、软件"></a>一、软件</h2><p>1.Unity 2019.3.13f1（Unity2018.4及以上版本）</p>
+<p>2.Visual Studio Community 2019</p>
+<h2 id="二、安装与开发环境部署"><a href="#二、安装与开发环境部署" class="headerlink" title="二、安装与开发环境部署"></a>二、安装与开发环境部署</h2><p>Unity与VS的安装与开发环境部署可参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41518190/article/details/108747774">博文</a>.</p>
+<p>需要提示以下几点注意事项：</p>
+<p>Unity：<br>1.工程应切换至UWP平台（如果没有该平台组件请先下载安装）；</p>
+<p>2.Architecture选择ARM64（HoloLens2 基于ARM64）；</p>
+<p>3.Minimum Platform Version选择10.0.18362.0及以上；</p>
+<p>4.其他选项参考下图：<br><img src="resources/139DA820EEF9D1D615A996184F4FCBFF.png" alt="parts"><br>5.Player Settings中，XR Settings添加VR SDK的Windows Mixed Reality，设置均为默认；</p>
+<p>Visual Studio:<br>Win 10 SDK 如果是通过VS安装包一起安装的，需要手动将安装位置的Windows Kits文件夹中的10文件夹复制到C盘的Windows Kits文件夹下（C:\Program Files (x86)\Windows Kits）</p>
+<p>复制，不要剪切！！！</p>
+    
+    <a class="article-more-a" href="/2021/10/19/vrARMRNote/Hololens%E5%BC%80%E5%8F%91_%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2%E5%8F%91%E5%B8%83/#more">more >></a>
+    
     
 
     
@@ -318,7 +305,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MR</a>
         		</li>
       		
 		</ul>
@@ -328,7 +315,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/mySqlNote/10_MySQL_%E7%AC%AC%E4%B9%9D%E8%AF%BE_GO%E8%BF%9E%E6%8E%A5MySQL/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/vrARMRNote/Hololens%E5%BC%80%E5%8F%91_%E5%B7%A5%E7%A8%8B%E9%83%A8%E7%BD%B2%E5%8F%91%E5%B8%83/">展开全文 >></a>
     </p>
     
 
@@ -358,7 +345,7 @@
 
 
   
-    <article id="post-mySqlNote/11_MySQL_第十课_GO中封装的SqlHelper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/01_Animator动画状态机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -366,7 +353,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/mySqlNote/11_MySQL_%E7%AC%AC%E5%8D%81%E8%AF%BE_GO%E4%B8%AD%E5%B0%81%E8%A3%85%E7%9A%84SqlHelper/" target="_blank">11_MySQL_第十课_GO中封装的SqlHelper</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/01_Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/" target="_blank">01_Animator动画状态机</a>
   
     </h1>
   
@@ -374,8 +361,8 @@
 
   
   
-<a href="/2021/10/19/mySqlNote/11_MySQL_%E7%AC%AC%E5%8D%81%E8%AF%BE_GO%E4%B8%AD%E5%B0%81%E8%A3%85%E7%9A%84SqlHelper/" class="archive-article-date">
-        <time datetime="2021-10-19T06:42:39.391Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/01_Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.939Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -403,7 +390,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">MySQL</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -413,7 +400,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/mySqlNote/11_MySQL_%E7%AC%AC%E5%8D%81%E8%AF%BE_GO%E4%B8%AD%E5%B0%81%E8%A3%85%E7%9A%84SqlHelper/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/01_Animator%E5%8A%A8%E7%94%BB%E7%8A%B6%E6%80%81%E6%9C%BA/">展开全文 >></a>
     </p>
     
 
@@ -443,7 +430,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/01_GoLang语言正式课_Go网络编程_网络概述——2018年8月课程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/01_GUI教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -451,7 +438,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/01_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0%E2%80%94%E2%80%942018%E5%B9%B48%E6%9C%88%E8%AF%BE%E7%A8%8B/" target="_blank">01_GoLang入门_Golang安装及环境配置</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/01_GUI%E6%95%99%E7%A8%8B/" target="_blank">01_GUI教程</a>
   
     </h1>
   
@@ -459,8 +446,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/01_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0%E2%80%94%E2%80%942018%E5%B9%B48%E6%9C%88%E8%AF%BE%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:55.023Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/01_GUI%E6%95%99%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.937Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -472,15 +459,6 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="1、协议Protocol："><a href="#1、协议Protocol：" class="headerlink" title="1、协议Protocol："></a><strong>1、协议Protocol：</strong></h3><p>** **从应用角度出发，协议可以理解为“规则”，是数据传输和数据解释的规则。</p>
-<ul>
-<li><p>一组协议，要求使用协议的双方，必须严格遵守协议的内容。</p>
-</li>
-<li><p>网络协议通常分不同层次进行开发，每一层分别负责不同的通信功能。</p>
-<ul>
-<li>一个协议族，比如TCP/IP,是一组不同层次上的多个协议的组合。
-    
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/01_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0%E2%80%94%E2%80%942018%E5%B9%B48%E6%9C%88%E8%AF%BE%E7%A8%8B/#more">more >></a>
     
     
 
@@ -497,7 +475,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -507,7 +485,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/01_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0%E2%80%94%E2%80%942018%E5%B9%B48%E6%9C%88%E8%AF%BE%E7%A8%8B/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/01_GUI%E6%95%99%E7%A8%8B/">展开全文 >></a>
     </p>
     
 
@@ -537,7 +515,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/02_GoLang语言正式课_Go网络编程_Socket编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/02_Mecanim动画系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -545,7 +523,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/02_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_Socket%E7%BC%96%E7%A8%8B/" target="_blank">02_GoLang语言正式课_Go网络编程_Socket编程</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/02_Mecanim%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/" target="_blank">02_NGUI教程</a>
   
     </h1>
   
@@ -553,8 +531,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/02_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_Socket%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:55.014Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/02_Mecanim%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.935Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -566,31 +544,6 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <ul>
-<li>IP+Port 可以确定一个程序</li>
-<li>数据通信，需要建立一个Socket</li>
-</ul>
-<h3 id="1、Socket"><a href="#1、Socket" class="headerlink" title="1、Socket"></a>1、Socket</h3><ul>
-<li><p>英文含义：插座，插孔。<strong>在网络通信过程中，需要两端，成对出现。</strong></p>
-</li>
-<li><p>一般称之为套接字，用于描述IP地址和端口。可以实现不同程序之间的数据通信。</p>
-</li>
-<li><p><strong>双向半双工</strong>： <strong>对讲机****———Channel</strong></p>
-</li>
-<li><p><strong>双向全双工</strong>： 电话——–<strong>Socket</strong></p>
-</li>
-<li><p><strong>单工通信</strong>： 遥控器——</p>
-</li>
-</ul>
-<h3 id="2、网络应用程序设计模式"><a href="#2、网络应用程序设计模式" class="headerlink" title="2、网络应用程序设计模式"></a>2、网络应用程序设计模式</h3><ul>
-<li>C/S 模式<ul>
-<li>传统的网络应用设计模式，客户机（client）/ 服务器（server）模式。需要在通信两端个字部署客户机和服务器完成数据通信。</li>
-</ul>
-</li>
-<li>B/S 模式<ul>
-<li>浏览器（Brower）/ 服务器（Server）模式。只需在一段部署服务器，而另外一段使用每台PC默认配置的浏览器即可完成数据的传输。
-    
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/02_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_Socket%E7%BC%96%E7%A8%8B/#more">more >></a>
     
     
 
@@ -607,7 +560,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -617,7 +570,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/02_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_Socket%E7%BC%96%E7%A8%8B/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/02_Mecanim%E5%8A%A8%E7%94%BB%E7%B3%BB%E7%BB%9F/">展开全文 >></a>
     </p>
     
 
@@ -647,7 +600,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/03_GoLang语言正式课_Go网络编程_并发聊天室——go特性高并发核心的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/02_NGUI教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -655,7 +608,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/03_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E5%B9%B6%E5%8F%91%E8%81%8A%E5%A4%A9%E5%AE%A4%E2%80%94%E2%80%94go%E7%89%B9%E6%80%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A0%B8%E5%BF%83%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank">03_GoLang语言正式课_Go网络编程_并发聊天室——go特性高并发核心的使用</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/02_NGUI%E6%95%99%E7%A8%8B/" target="_blank">01_GUI教程</a>
   
     </h1>
   
@@ -663,8 +616,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/03_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E5%B9%B6%E5%8F%91%E8%81%8A%E5%A4%A9%E5%AE%A4%E2%80%94%E2%80%94go%E7%89%B9%E6%80%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A0%B8%E5%BF%83%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:55.004Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/02_NGUI%E6%95%99%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.933Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -676,40 +629,6 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>融合练习，综合复习</strong></p>
-<ul>
-<li>模块概述</li>
-<li>广播用户上线</li>
-<li>广播用户消息</li>
-<li>展示在线用户</li>
-<li>修改用户名</li>
-<li>用户退出</li>
-<li>超时处理</li>
-</ul>
-<h3 id="01、模块概述"><a href="#01、模块概述" class="headerlink" title="01、模块概述"></a>01、模块概述</h3><ul>
-<li><p><strong>主go程（服务器）</strong></p>
-<ul>
-<li>负责监听、接收用户（客户端）连接请求，建立通信关系。同时启动相应的go程处理任务。</li>
-</ul>
-</li>
-<li><p><strong>处理用户连接的go程1</strong>：<strong>HandleConnect</strong></p>
-<ul>
-<li>负责新上线用户的存储，用户消息读取、发送，用户改名、下线处理及超时处理。</li>
-<li>为了提高效率，同时给一个用户维护多个协程来并发处理上述任务。</li>
-</ul>
-</li>
-<li><p><strong>用户消息广播的go程2</strong>：<strong>Manager</strong></p>
-<ul>
-<li>负责在线用户遍历，用户消息广播发送。需要与HandleConnect go程及用户子go程协作完成。</li>
-</ul>
-</li>
-<li><p><strong>go程间应用数据及通信</strong></p>
-<ul>
-<li>Map:存储所有登陆聊天室的用户信息，key:用户的ip+port. Value:Client结构体。</li>
-<li>Client结构体：包含成员：用户名Name，网络地址Addr(ip+port),发送消息的通道C（channel）</li>
-<li>通道message：协调并发go程间消息的传递。
-    
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/03_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E5%B9%B6%E5%8F%91%E8%81%8A%E5%A4%A9%E5%AE%A4%E2%80%94%E2%80%94go%E7%89%B9%E6%80%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A0%B8%E5%BF%83%E7%9A%84%E4%BD%BF%E7%94%A8/#more">more >></a>
     
     
 
@@ -726,7 +645,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -736,7 +655,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/03_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E5%B9%B6%E5%8F%91%E8%81%8A%E5%A4%A9%E5%AE%A4%E2%80%94%E2%80%94go%E7%89%B9%E6%80%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A0%B8%E5%BF%83%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/02_NGUI%E6%95%99%E7%A8%8B/">展开全文 >></a>
     </p>
     
 
@@ -766,7 +685,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/04_GoLang语言正式课_Go网络编程_HTTP编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/03_UGUI教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -774,7 +693,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/" target="_blank">04_GoLang语言正式课_Go网络编程_HTTP编程</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/03_UGUI%E6%95%99%E7%A8%8B/" target="_blank">03_UGUI教程</a>
   
     </h1>
   
@@ -782,8 +701,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:54.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/03_UGUI%E6%95%99%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.927Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -795,25 +714,6 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Http服务器又称Web服务器（通常使用http协议）。</p>
-<h3 id="1、Web工作方式："><a href="#1、Web工作方式：" class="headerlink" title="1、Web工作方式："></a>1、Web工作方式：</h3><p>![QQ截图20210906113528.png](resources/019B1E5972BC52C43B0FD8A7FF32AB53.png =1091x470)</p>
-<ul>
-<li>1. 客户端 ——&gt; 访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> ——&gt; <strong>DNS 服务器</strong>。 返回 <strong>该域名对应的 IP地址</strong>。</li>
-<li>2. 客户端 ——&gt; IP + port ——&gt; 访问 网页数据。（<strong>TCP 连接</strong>。 <strong>HTTP协议。</strong>）</li>
-</ul>
-<h3 id="2、Http协议："><a href="#2、Http协议：" class="headerlink" title="2、Http协议："></a>2、Http协议：</h3><ul>
-<li><p><strong>超文本传输协议（HTTP, HyperText Transfer Protocol）</strong>是互联网上应用最为广泛的一种网络协议，他详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。</p>
-</li>
-<li><p>Http协议通常承载于<strong>TCP协议之上</strong>，有时也承载于<strong>TLS和SSL协议层</strong>之上，这个时候，就成了我们常说的<strong>HTTPS</strong>。</p>
-<p><strong>http:明文。 https：加密传输。</strong></p>
-</li>
-</ul>
-<p>** varshark抓包工具**</p>
-<ul>
-<li><p>http网站可以被抓包，用户名+密码</p>
-<p>![QQ截图20210906115006.png](resources/E13E5833CCADC7ED90EAF05944835556.png =492x370)</p>
-    
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/#more">more >></a>
     
     
 
@@ -830,7 +730,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -840,7 +740,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/03_UGUI%E6%95%99%E7%A8%8B/">展开全文 >></a>
     </p>
     
 
@@ -870,7 +770,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/05_GoLang语言正式课_Go网络编程_爬虫开发_20180814_3年前录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/04_FariGUI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -878,7 +778,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/05_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91_20180814_3%E5%B9%B4%E5%89%8D%E5%BD%95/" target="_blank">05_GoLang语言正式课_Go网络编程_爬虫开发_20180814_3年前录</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/" target="_blank">04_FariGUI</a>
   
     </h1>
   
@@ -886,8 +786,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/05_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91_20180814_3%E5%B9%B4%E5%89%8D%E5%BD%95/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:54.987Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -899,41 +799,6 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="爬虫简介"><a href="#爬虫简介" class="headerlink" title="爬虫简介"></a>爬虫简介</h3><p><strong>01、爬虫概念</strong></p>
-<ul>
-<li><strong>网络爬虫</strong>（又称为<strong>网页蜘蛛</strong>，<strong>网络机器人</strong>），是一种<strong>按照一定的规则自动地抓取万维网信息的程序</strong>。<ul>
-<li>简单地说，就是编写程序，模拟浏览器发送请求，获取到和浏览器一模一样的数据。因此，我们能获取的是浏览器能够接收到的数据。</li>
-</ul>
-</li>
-</ul>
-<p><strong>02、爬虫获取的数据的用途</strong></p>
-<ul>
-<li>呈现数据，呈现在 <strong>app</strong> 或者 网站上</li>
-<li>进行<strong>数据分析</strong>，获得结论</li>
-</ul>
-<p><strong>03、爬虫的分类</strong></p>
-<ul>
-<li>通用爬虫：搜索引擎的爬虫</li>
-<li>聚焦爬虫：针对特定网站的爬虫</li>
-</ul>
-<p><strong>04、聚焦爬虫的工作流程：</strong></p>
-<ul>
-<li>明<strong>确</strong>URL(请求的地址、明确爬什么)</li>
-<li><strong>发</strong>送请求，获取响应数据</li>
-<li>保存响应数据，提<strong>取</strong>有用信息</li>
-<li>处理数据（存储、使<strong>用</strong>）</li>
-</ul>
-<p><strong>05、爬虫开发的基本流程</strong></p>
-<ul>
-<li><p>构建、发送请求链接</p>
-</li>
-<li><p>获取服务器返回的响应数据</p>
-</li>
-<li><p>过滤、保存、使用得到的数据</p>
-</li>
-<li><p>关闭请求链接</p>
-    
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/05_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91_20180814_3%E5%B9%B4%E5%89%8D%E5%BD%95/#more">more >></a>
     
     
 
@@ -950,7 +815,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -960,7 +825,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/05_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91_20180814_3%E5%B9%B4%E5%89%8D%E5%BD%95/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/">展开全文 >></a>
     </p>
     
 
@@ -990,7 +855,7 @@
 
 
   
-    <article id="post-goLangNote/goLangAdvance/06_GoLang语言正式课_Go网络编程_正则表达式—爬虫项目练习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/编辑器扩展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -998,7 +863,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangAdvance/06_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E2%80%94%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/" target="_blank">06_GoLang语言正式课_Go网络编程_正则表达式—爬虫项目练习</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/" target="_blank">编辑器扩展</a>
   
     </h1>
   
@@ -1006,8 +871,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangAdvance/06_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E2%80%94%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/" class="archive-article-date">
-        <time datetime="2021-10-19T05:44:54.980Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.901Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -1019,39 +884,13 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>###markdown table演示</p>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><table>
-<thead>
-<tr>
-<th>Tables</th>
-<th align="center">Are</th>
-<th align="right">Cool</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>col 3 is</td>
-<td align="center">right-aligned</td>
-<td align="right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td align="center">centered</td>
-<td align="right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td align="center">are neat</td>
-<td align="right">$1</td>
-</tr>
-</tbody></table>
-<h3 id="GFM-Task-Lists"><a href="#GFM-Task-Lists" class="headerlink" title="GFM Task Lists"></a>GFM Task Lists</h3><ul>
-<li><input disabled="" type="checkbox"> a task list item</li>
-<li><input disabled="" type="checkbox"> list syntax required</li>
-<li><input disabled="" type="checkbox"> normal <strong>formatting</strong>, @mentions, #1234 refs</li>
-<li><input disabled="" type="checkbox"> incomplete</li>
-<li><input checked="" disabled="" type="checkbox"> completed
+    <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35361471/article/details/84713382">https://blog.csdn.net/qq_35361471/article/details/84713382</a></p>
+<h3 id=""><a href="#" class="headerlink" title="****"></a>****</h3><h2 id="一、编辑器开发入门"><a href="#一、编辑器开发入门" class="headerlink" title="一、编辑器开发入门"></a>一、编辑器开发入门</h2><h3 id="-1"><a href="#-1" class="headerlink" title="****"></a>****</h3><h3 id="编辑器扩展概念"><a href="#编辑器扩展概念" class="headerlink" title="编辑器扩展概念"></a><strong>编辑器扩展概念</strong></h3><hr>
+<p><strong>Unity编辑器扩展</strong>是对现有的Unity进行自定义功能扩展的一种方法，可以简化一些重复的开发动作，也可以用于制作插件。</p>
+<p><strong>Unity的编辑器扩展</strong>绝大部分是用于unity的编辑器模式下，我们扩展的方法是为了提高开发效率。</p>
+<p>但这些方法在游戏运行时并没有作用，不需要将他们打包进工程，所以我们需要把这些不需要打包的资源和脚本放在名字是Editor的文件下，这个文件可以是根目录也可以是子目录。</p>
     
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/06_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E2%80%94%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/#more">more >></a>
+    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/#more">more >></a>
     
     
 
@@ -1068,7 +907,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -1078,7 +917,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangAdvance/06_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E2%80%94%E7%88%AC%E8%99%AB%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/">展开全文 >></a>
     </p>
     
 
@@ -1108,7 +947,7 @@
 
 
   
-    <article id="post-goLangNote/goLangBasic/02_GoLang语言入门_二进制、八进制、十进制和十六进制相互转化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/使用Line Renderer组件绘制图形" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1116,7 +955,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/" target="_blank">02_GoLang语言入门_二进制、八进制、十进制和十六进制相互转化</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" target="_blank">使用Line Renderer组件绘制图形</a>
   
     </h1>
   
@@ -1124,8 +963,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.511Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -1137,12 +976,12 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>进制：</strong></p>
-<p>进制也就是进制位，我们常用的进制包括：二进制、八进制、十进制与十六进制，它们之间区别在于数运算时是逢几进一位。</p>
-<p>比如二进制是逢2进一位，十进制也就是我们常用的0-9是逢10进一位。</p>
-<p>![](resources/DB8147FC599C3DE49C2EDF5714952307.jpg =500x333)    </p>
+    <h1 id="线渲染器-Line-Renderer"><a href="#线渲染器-Line-Renderer" class="headerlink" title="线渲染器 (Line Renderer)"></a>线渲染器 (Line Renderer)</h1><p>线渲染器 (Line Renderer) 组件采用 3D 空间中两个或多个点的数组，在每个点之间绘制一条直线。因此，单个线渲染器组件可用于绘制从简单直线到复杂螺旋线的任何线条。这条线始终是连续的；如果需要绘制两条或更多完全独立的线，则应使用多个游戏对象，每个游戏对象都要有自己的线渲染器。</p>
+<p>线渲染器不渲染一个像素宽的线。此渲染器将渲染宽度采用世界单位且可纹理化的公告牌线（总是面向摄像机的多边形）。线渲染器使用与<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-TrailRenderer.html">轨迹渲染器 (Trail Renderer)</a> 相同的线渲染算法。</p>
+<p><img src="resources/B510BE5F5DAEA977D6B988EC4A38C78B.png"></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>属性功能Cast Shadows确定线是否投射阴影，是应从线的一侧还是两侧投射阴影，或线是否应仅投射阴影而不以其他方式进行绘制。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-shadowCastingMode.html">Renderer.shadowCastingMode</a> 以了解更多信息。Receive Shadows如果启用此属性，线将接受阴影。Motion Vectors选择要用于此线渲染器的运动矢量 (Motion Vector) 类型。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-motionVectorGenerationMode.html">Renderer.motionVectorGenerationMode</a> 以了解更多信息。Materials这些属性描述了用于渲染线的材质数组。对于数组中的每种材质，该线将被绘制一次。Light Parameters在此处引用<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-LightmapParameters.html">光照贴图参数 (Lightmap Parameters)</a> 资源以使线与全局光照系统交互。Positions这些属性描述了要连接的 Vector3 点数组。Use World Space如果启用此属性，这些点将视为世界空间坐标，而不受此组件附加到的游戏对象的变换所影响。Loop启用此属性可连接线的第一个和最后一个位置。这样会形成闭环。Width定义宽度值和曲线以控制线在其开始和结束之间的各个点处的宽度。曲线仅在每个顶点处采样，因此其精度受到线中存在的顶点数量的限制。线的总宽度由宽度值控制。Color定义一个渐变来控制线沿其长度的颜色。Corner Vertices此属性指示在绘制线中的角时使用多少个额外顶点。增加此值可使线的角显得更圆。End Cap Vertices此属性指示使用多少个额外顶点在线上创建端盖。增加此值可使线的端盖显得更圆。Alignment设置为 View 可使线面向摄像机，或设置为 Local 根据线的变换组件的方向对齐。Texture Mode控制如何将纹理应用于线。使用 Stretch 可沿着线的整个长度应用纹理贴图，或使用 Wrap 使纹理沿着线的长度重复。应使用材质 (Material) 中的 Tiling 参数来控制重复率。Shadow Bias沿着光照方向移动阴影以消除因使用公告牌几何体来模拟体积而导致的阴影瑕疵。Generate Lighting Data如果启用此属性（选中复选框），则在构建线几何体时包含法线和切线。这样允许它使用具有场景光照的材质，例如通过标准着色器，或通过使用自定义着色器。Sorting Layer渲染器排序图层的名称。Order in Layer此渲染器在排序图层中的顺序。Light Probes基于探针的光照插值模式。Reflection Probes如果启用此属性，并且场景中存在反射探针，则会为此线渲染器拾取反射纹理，并将此纹理设置为内置的着色器 uniform 变量。</p>
     
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/#more">more >></a>
+    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/#more">more >></a>
     
     
 
@@ -1159,7 +998,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go基础课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -1169,7 +1008,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/">展开全文 >></a>
     </p>
     
 
@@ -1199,7 +1038,7 @@
 
 
   
-    <article id="post-goLangNote/goLangBasic/03_GoLang语言入门_基础语法_01变量、常量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unityNote/UnityBasic/DoTween笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -1207,7 +1046,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/" target="_blank">03_GoLang语言入门_基础语法_01变量、常量</a>
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/" target="_blank">DoTween笔记</a>
   
     </h1>
   
@@ -1215,8 +1054,8 @@
 
   
   
-<a href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.507Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.853Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -1228,10 +1067,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="1-HelloWorld程序解读和Go编码规范"><a href="#1-HelloWorld程序解读和Go编码规范" class="headerlink" title="1.HelloWorld程序解读和Go编码规范"></a><strong>1.HelloWorld程序解读和Go编码规范</strong></h3><p><strong>大写：代表公共的</strong></p>
-<p><strong>小写：代表私有的</strong></p>
+    <h3 id="入门理解：补间动画"><a href="#入门理解：补间动画" class="headerlink" title="入门理解：补间动画"></a><strong>入门理解：补间动画</strong></h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform gameObject;</span><br><span class="line"><span class="keyword">public</span> Vector3 myValue;</span><br><span class="line"><span class="comment">// Start is called before the first frame update</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Vector3 myPos = gameObject.position;</span><br><span class="line">    myValue =<span class="keyword">new</span> Vector3(myPos.x,myPos.y,myPos.z) ;</span><br><span class="line">    <span class="comment">//对变量动画（通过差值的方式修改一个值的变化，渐变过去）</span></span><br><span class="line">    DOTween.To(() =&gt; myValue, x =&gt; myValue = x, <span class="keyword">new</span> Vector3(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>),<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Update is called once per frame</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    gameObject.position = myValue;<span class="comment">//每一帧的值与myValue的值保持一样。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     
-    <a class="article-more-a" href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/#more">more >></a>
+    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/#more">more >></a>
     
     
 
@@ -1248,7 +1086,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go基础课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
         		</li>
       		
 		</ul>
@@ -1258,7 +1096,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/">展开全文 >></a>
     </p>
     
 
@@ -1290,7 +1128,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1421,7 +1259,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C#高级进阶课程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1430,6 +1276,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go基础课技术笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unity基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HtmlAndCSS</a>
               </li>
             
             <div class="clearfix"></div>

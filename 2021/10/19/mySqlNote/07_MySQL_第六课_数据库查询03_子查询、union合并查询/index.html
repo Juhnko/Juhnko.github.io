@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="一、子查询 外面的查询被称为父查询，括号中的查询称为子查询。 子查询为父查询提供查询条件。   子查询返回多个值就不能用“&#x3D;”，需要用“in”  01、语法：1select 语句 where 条件（select...from 表）  例子： 1select * from stuInfo where stuNo&#x3D;(select stuNo from stuMarks where writenExam">
+  <meta name="description" content="一、子查询 外面的查询被称为父查询，括号中的查询称为子查询。 子查询为父查询提供查询条件。   子查询返回多个值就不能用“&#x3D;”，需要用“in”  01、语法：1select 语句 where 条件（select...from 表）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="07_MySQL_第六课_数据库查询03_子查询、union合并查询">
 <meta property="og:url" content="http://ljk3d.com/2021/10/19/mySqlNote/07_MySQL_%E7%AC%AC%E5%85%AD%E8%AF%BE_%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A203_%E5%AD%90%E6%9F%A5%E8%AF%A2%E3%80%81union%E5%90%88%E5%B9%B6%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="梁俊可_个人博客">
-<meta property="og:description" content="一、子查询 外面的查询被称为父查询，括号中的查询称为子查询。 子查询为父查询提供查询条件。   子查询返回多个值就不能用“&#x3D;”，需要用“in”  01、语法：1select 语句 where 条件（select...from 表）  例子： 1select * from stuInfo where stuNo&#x3D;(select stuNo from stuMarks where writenExam">
+<meta property="og:description" content="一、子查询 外面的查询被称为父查询，括号中的查询称为子查询。 子查询为父查询提供查询条件。   子查询返回多个值就不能用“&#x3D;”，需要用“in”  01、语法：1select 语句 where 条件（select...from 表）">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-19T06:42:39.419Z">
-<meta property="article:modified_time" content="2021-10-19T06:47:44.478Z">
+<meta property="article:modified_time" content="2021-10-19T07:11:13.166Z">
 <meta property="article:author" content="梁俊可">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -303,7 +303,7 @@
 <li><strong>子查询返回多个值就不能用“=”，需要用“in”</strong></li>
 </ul>
 <h3 id="01、语法："><a href="#01、语法：" class="headerlink" title="01、语法："></a><strong>01、语法：</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select 语句 where 条件（select...from 表）</span><br></pre></td></tr></table></figure>
-
+<span id="more"></span>
 <p><strong>例子：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from stuInfo where stuNo=(select stuNo from stuMarks where writenExam=80);  # 子查询 select stuNo from stuMarks where writenExam=80 的结果 为父查询提供查询条件</span><br></pre></td></tr></table></figure>
 
@@ -736,7 +736,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C#高级进阶课程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -745,6 +753,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go基础课技术笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unity基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HtmlAndCSS</a>
               </li>
             
             <div class="clearfix"></div>

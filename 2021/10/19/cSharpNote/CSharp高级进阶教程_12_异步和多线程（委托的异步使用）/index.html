@@ -6,20 +6,35 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ljk3d.com">
-  <title>Archives: 2021/6 | 梁俊可_个人博客</title>
+  <title>C#高级进阶教程_12_异步和多线程（委托的异步使用） | 梁俊可_个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Unity开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梁俊可_个人博客">
-<meta property="og:url" content="http://ljk3d.com/archives/2021/06/index.html">
+  <meta name="description" content="1、进程-线程-多线程，同步和异步的概念 我们生活中有许许多多关于进程与线程的小例子，比如：1.我们使用打开一个微信软件，这个时候就开启了一个进程，当我们在微信里面进行各种操作（查看朋友圈，扫一扫…），这么多的操作就是线程。  所以我们可以说”进程”是包含”线程”的，”线程”是”进程”的一个子集。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C#高级进阶教程_12_异步和多线程（委托的异步使用）">
+<meta property="og:url" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/index.html">
 <meta property="og:site_name" content="梁俊可_个人博客">
-<meta property="og:description" content="Unity开发">
+<meta property="og:description" content="1、进程-线程-多线程，同步和异步的概念 我们生活中有许许多多关于进程与线程的小例子，比如：1.我们使用打开一个微信软件，这个时候就开启了一个进程，当我们在微信里面进行各种操作（查看朋友圈，扫一扫…），这么多的操作就是线程。  所以我们可以说”进程”是包含”线程”的，”线程”是”进程”的一个子集。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/522D6F4605009FEC4EACEE26B5CE669A.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/46FA047B83CE7EEE4E54B5E15CC2904E.png">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/F8EE5D3398DCEDF90C8DBF25341BCB18.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/DC2661C05B863B8D6BBAF9C03BC79A69.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/1ABC8CBC065F90C2715223B67B910B6F.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/EF70CAD67455E1704176CF8BD36AE567.png">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/E9C7DD1D7B36F41D9149C7D594D66B50.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/D200DAE5A2B043577EBC92E7AB286273.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/D8D5AC7E30DF2A052716E4DB42A4129A.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/2A80F8668CE0C92E2B3D9F934E22D17B.jpg">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/5595EB7237CF6CB868F9306E6786B6F3.png">
+<meta property="og:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/FA8E8003AE7AE063DA1B8556FF31BDDA.png">
+<meta property="article:published_time" content="2021-10-19T06:54:41.106Z">
+<meta property="article:modified_time" content="2021-10-19T07:11:13.148Z">
 <meta property="article:author" content="梁俊可">
-<meta property="article:tag" content="三维数字孪生,虚拟仿真,VR全景,党建开发">
+<meta property="article:tag" content="C#高级进阶课程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/resources/522D6F4605009FEC4EACEE26B5CE669A.jpg">
   
     <link rel="alternative" href="/atom.xml" title="梁俊可_个人博客" type="application/atom+xml">
   
@@ -240,54 +255,420 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-cSharpNote/CSharp高级进阶教程_12_异步和多线程（委托的异步使用）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/06/30/hello-world/" class="archive-article-date">
-        <time datetime="2021-06-30T06:43:59.638Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-30</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/06/30/hello-world/" target="_blank">Hello World</a>
   
+    <h1 class="article-title" itemprop="name">
+      C#高级进阶教程_12_异步和多线程（委托的异步使用）
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<a href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/" class="archive-article-date">
+        <time datetime="2021-10-19T06:54:41.106Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+</a>
+
   
   
-    </div></section>
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.9k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">16分</span>
+    </span>
+  </span>
+</div>
+
+
   
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>1、进程-线程-多线程，同步和异步的概念</strong></p>
+<p>我们生活中有许许多多关于进程与线程的小例子，比如：1.我们使用打开一个微信软件，这个时候就开启了一个进程，当我们在微信里面进行各种操作（查看朋友圈，扫一扫…），这么多的操作就是线程。</p>
+<p> 所以我们<strong>可以说”进程”是包含”线程”的，”线程”是”进程”的一个子集。</strong></p>
+<hr>
+<span id="more"></span>
+<p><strong>进程（Process）</strong> 是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。 在当代面向线程设计的计算机结构中，进程是线程的容器。</p>
+<p> 程序是指令、数据及其组织形式的描述，进程是程序的实体。是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。</p>
+<p> ** 线程（thread）**是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程中的实际运作单位。</p>
+<p> 一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。</p>
+<p><strong>简单总结一下：</strong></p>
+<p>**<br>**</p>
+<p> 进程：指在系统中正在运行的一个应用程序；程序一旦运行就是进程；<strong>进程——资源分配的最小单位。</strong></p>
+<p> 线程：系统分配处理器时间资源的基本单元，或者说进程之内独立执行的一个单元执行流。<strong>线程——程序执行的最小单位。（程序执行流的最小单位）</strong></p>
+<p>**<br>**</p>
+<p><strong>进程与线程的理解：</strong></p>
+<hr>
+<p>1.计算机的核心是CPU，它承担了所有的计算任务。它就像一座工厂，时刻在运行。<br><img src="resources/522D6F4605009FEC4EACEE26B5CE669A.jpg"></p>
+<p>2.假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。<br><img src="resources/46FA047B83CE7EEE4E54B5E15CC2904E.png"></p>
+<p>3.进程就好比工厂的车间，它代表CPU所能处理的单个任务。任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。<br><img src="resources/F8EE5D3398DCEDF90C8DBF25341BCB18.jpg"></p>
+<p>4.一个车间里，可以有很多工人。他们协同完成一个任务。<br><img src="resources/DC2661C05B863B8D6BBAF9C03BC79A69.jpg"></p>
+<p>5.线程就好比车间里的工人。一个进程可以包括多个线程。<br><img src="resources/1ABC8CBC065F90C2715223B67B910B6F.jpg"></p>
+<p>6.车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的。这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。<br><img src="resources/EF70CAD67455E1704176CF8BD36AE567.png"></p>
+<p>7.可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了。这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。<br><img src="resources/E9C7DD1D7B36F41D9149C7D594D66B50.jpg"></p>
+<p>8.一个防止他人进入的简单方法，就是门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/%E4%BA%92%E6%96%A5%E9%94%81">“互斥锁”</a>（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。<br><img src="resources/D200DAE5A2B043577EBC92E7AB286273.jpg"></p>
+<p>9.还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人只能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。<br><img src="resources/D8D5AC7E30DF2A052716E4DB42A4129A.jpg"></p>
+<p>10.这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原处。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做<a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Semaphore_(programming)">“信号量”</a>（Semaphore），用来保证多个线程不会互相冲突。</p>
+<p>不难看出，mutex是semaphore的一种特殊情况（n=1时）。也就是说，完全可以用后者替代前者。但是，因为mutex较为简单，且效率高，所以在必须保证资源独占的情况下，还是采用这种设计。</p>
+<p><img src="resources/2A80F8668CE0C92E2B3D9F934E22D17B.jpg"></p>
+<p>11.<br><img src="resources/5595EB7237CF6CB868F9306E6786B6F3.png"><br>操作系统的设计，因此可以归结为三点：<br>（1）以多进程形式，允许多个任务同时运行；<br>（2）以多线程形式，允许单个任务分成不同的部分运行；<br>（3）提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。</p>
+<h2 id="计算机的概念"><a href="#计算机的概念" class="headerlink" title="计算机的概念"></a>计算机的概念</h2><h3 id="01、进程与线程"><a href="#01、进程与线程" class="headerlink" title="01、进程与线程"></a>01、进程与线程</h3><p><strong>进程和线程是计算机的概念。</strong></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><strong>进程：</strong>一个程序运行时，占用的所有计算资源的总和。</p>
+<p><strong>线程：</strong>程序执行流的最小单位；任何操作都是由线程完成的；</p>
+<p> 线程依托于进程存在的，一个进程可以包含多个线程；</p>
+<p> 线程也可以有自己的计算资源。</p>
+<h3 id="02、多线程"><a href="#02、多线程" class="headerlink" title="02、多线程"></a><strong>02、多线程</strong></h3><p>1. 多个执行流同时进行。</p>
+<hr>
+<hr>
+<p> CPU太快了，<strong>分时间片。（上下文切换）</strong></p>
+<p> 微观角度，一个核同一时刻只能执行一个线程；宏观角度，多线程并发执行。</p>
+<p>2.多CPU多核 可以独立工作，并发进行。</p>
+<p> 6核12线程（6个物理核，12个虚拟核。这里的“线程”代表的是虚拟核）</p>
+<p><strong>3.Tread类是C#语言对线程对象的封装。</strong></p>
+<p>计算机方面的多线程和开发Tread，Task、TreadPool、Parallel中的多线程不完全一样。</p>
+<hr>
+<p><strong>并发执行</strong>机制原理：</p>
+<hr>
+<p> 简单地说就是把一个处理器划分为若干个短的时间片，每个时间片依次轮流地执行处理各个应用程序，由于一个时间片很短，相对于一个应用程序来说，就好像是处理器在为自己单独服务一样，从而达到多个应用程序在同时进行的效果。</p>
+<h3 id="03、同步-异步"><a href="#03、同步-异步" class="headerlink" title="03、同步/异步"></a>03、同步/异步</h3><p><strong>同步/异步是对方法执行的描述。</strong></p>
+<p><strong>同步</strong>：完成计算后，再进入下一行。<strong>按顺序执行。</strong></p>
+<p><strong>异步</strong>：不会等待方法的完成，会直接进入下一行。<strong>无需等待执行。非阻塞。</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">action.Invoke(name);</span><br><span class="line">action.BeginInvoke(name, <span class="literal">null</span>, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="04、异步、多线程"><a href="#04、异步、多线程" class="headerlink" title="04、异步、多线程"></a>04、异步、多线程</h3><hr>
+<p><strong>认识</strong>：C#异步、多线程。多线程就是多个Tread并发；C#语言里面的东西。</p>
+<p> 线程是源于操作系统的。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p><strong>理解</strong>：同步方法卡界面（主UI线程，忙于计算）</p>
+<p> 异步多线程方法不卡界面，主线程完事儿了，计算任务交给子线程在做。</p>
+<p><strong>异步多线程作用</strong></p>
+<p>1、可以提升用户体验。(Winform，还可以使用主UI线程)</p>
+<p>2、一个业务操作后发送邮件。（web开发，异步发送邮件。无需等待）<strong>异步+回调？异步多线程和Ajax区别？</strong></p>
+<p>3、速度快。用资源换时间（可能出现资源不够的情况）</p>
+<p>4、多线程有管理成本。</p>
+<p>5、<strong>多个独立任务</strong>可以同时进行的情况下，才有使用价值！</p>
+<p>6、启动无序、执行时间不确定。结束也无序。</p>
+<p>注意：尽量避免通过等几毫秒的形式来控制启动/执行时间/结束。//Tread.Sleep(5); 顺序控制不好控制！</p>
+<p><strong>回调 / 状态检测 / 状态等待 / 信号量？？</strong></p>
+<hr>
+<h3 id="Action和Func-委托的异步调用"><a href="#Action和Func-委托的异步调用" class="headerlink" title="Action和Func 委托的异步调用"></a><strong>Action和Func 委托的异步调用</strong></h3><p><strong>AsyncCallback 异步回调函数</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnAsyncAdvanced_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   Console.WriteLine(<span class="string">$&quot;****************btnAsyncAdvanced_Click Start <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">   Action&lt;<span class="built_in">string</span>&gt; action = <span class="keyword">this</span>.DoSomethingLong;</span><br><span class="line">   IAsyncResult asyncResult0 = <span class="literal">null</span>;</span><br><span class="line">   AsyncCallback callback = ia =&gt; <span class="comment">//传入ia参数，执行下面的方法体</span></span><br><span class="line">   &#123;</span><br><span class="line">       Console.WriteLine(<span class="built_in">object</span>.ReferenceEquals(asyncResult0, ia));<span class="comment">//Reference引用</span></span><br><span class="line">       Console.WriteLine(ia.AsyncState);</span><br><span class="line">       Console.WriteLine(<span class="string">$&quot;到这里计算已经完成了。<span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span>。&quot;</span>);</span><br><span class="line">   &#125;;</span><br><span class="line">  asyncResult0 = action.BeginInvoke(<span class="string">&quot;btnAsyncAdvanced_Click&quot;</span>, callback, <span class="string">&quot;hao&quot;</span>);<span class="comment">//回调函数，此方法调用完之后，才会调用回调函数。</span></span><br><span class="line">  </span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;到这里计算已经完成了。<span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span>。&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnAsyncAdvanced_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;****************btnAsyncAdvanced_Click Start <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;0000000&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">    Action&lt;<span class="built_in">string</span>&gt; action = <span class="keyword">this</span>.DoSomethingLong;</span><br><span class="line">    IAsyncResult asyncResult0 = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    AsyncCallback callback = ia =&gt;<span class="comment">//回调函数</span></span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="built_in">object</span>.ReferenceEquals(asyncResult0, ia));</span><br><span class="line">        Console.WriteLine(ia.AsyncState);</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;到这里计算已经完成了。<span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span>。&quot;</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    asyncResult0 = action.BeginInvoke(<span class="string">&quot;btnAsyncAdvanced_Click&quot;</span>, callback, <span class="string">&quot;hao&quot;</span>);<span class="comment">//委托Action的异步调用</span></span><br><span class="line">  </span><br><span class="line">    <span class="built_in">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (!asyncResult0.IsCompleted)<span class="comment">//1 卡界面：主线程忙于等待</span></span><br><span class="line">    &#123;   <span class="comment">//可以等待，边等待边做其他操作</span></span><br><span class="line">        <span class="comment">//可能最多200ms的延迟</span></span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;文件上传完成<span class="subst">&#123;i++ * <span class="number">10</span>&#125;</span>%..&quot;</span>);<span class="comment">//File.ReadSize</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;文件上传完成99.9%..&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.Sleep(<span class="number">200</span>);<span class="comment">//等待200毫秒</span></span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;上传成功了。。。..&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>![IMAGE](resources/8D23A3B21044A753826A7426C65D5ECC.png =1440x365)</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">asyncResult0.AsyncWaitHandle.WaitOne();<span class="comment">//等待任务的完成，及时等待</span></span><br><span class="line">asyncResult0.AsyncWaitHandle.WaitOne(<span class="number">-1</span>);<span class="comment">//等待任务的完成</span></span><br><span class="line">asyncResult0.AsyncWaitHandle.WaitOne(<span class="number">1000</span>);<span class="comment">//限时等待；但是最多等待1000ms</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">action.EndInvoke(asyncResult0);<span class="comment">//可以等待</span></span><br><span class="line">&#123;</span><br><span class="line">  Func&lt;<span class="built_in">int</span>&gt; func = () =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        Thread.Sleep(<span class="number">2000</span>);</span><br><span class="line">        <span class="keyword">return</span> DateTime.Now.Day;<span class="comment">//带返回值的委托Func</span></span><br><span class="line">    &#125;;</span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;func.Invoke()=<span class="subst">&#123;func.Invoke()&#125;</span>&quot;</span>);<span class="comment">//可以拿到计算结果unc.Invoke();</span></span><br><span class="line"></span><br><span class="line">  IAsyncResult asyncResult = func.BeginInvoke(r =&gt; <span class="comment">//r为回调函数</span></span><br><span class="line">   &#123;</span><br><span class="line">       func.EndInvoke(r);</span><br><span class="line">       Console.WriteLine(r.AsyncState);</span><br><span class="line">   &#125;, <span class="string">&quot;打印LJK&quot;</span>);</span><br><span class="line"></span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;func.EndInvoke(asyncResult)=<span class="subst">&#123;func.EndInvoke(asyncResult)&#125;</span>&quot;</span>);<span class="comment">//func.EndInvoke(asyncResult)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">$&quot;全部计算真的都完成了，然后给用户返回<span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span>&quot;</span>);</span><br><span class="line">Console.WriteLine(<span class="string">$&quot;****************btnAsyncAdvanced_Click End   <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnAsyncAdvanced_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">        &#123;</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;****************btnAsyncAdvanced_Click Start <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;0000000&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">            Action&lt;<span class="built_in">string</span>&gt; action = <span class="keyword">this</span>.DoSomethingLong;</span><br><span class="line">            </span><br><span class="line">            Thread.Sleep(<span class="number">200</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Do Something Else......&quot;</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Do Something Else......&quot;</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">&quot;Do Something Else......&quot;</span>);</span><br><span class="line"></span><br><span class="line">            &#123;</span><br><span class="line">                Func&lt;<span class="built_in">int</span>&gt; func = () =&gt;</span><br><span class="line">                  &#123;</span><br><span class="line">                      Thread.Sleep(<span class="number">2000</span>);</span><br><span class="line">                      <span class="keyword">return</span> DateTime.Now.Year;</span><br><span class="line">                  &#125;;</span><br><span class="line">                Console.WriteLine(<span class="string">$&quot;func.Invoke()=<span class="subst">&#123;func.Invoke()&#125;</span>&quot;</span>);</span><br><span class="line"></span><br><span class="line">                IAsyncResult asyncResult = func.BeginInvoke(r =&gt;</span><br><span class="line">                 &#123;</span><br><span class="line">                    <span class="comment">//func.EndInvoke(r);</span></span><br><span class="line">                     Console.WriteLine(<span class="string">$&quot;________func.EndInvoke(asyncResult)=<span class="subst">&#123;func.EndInvoke(r)&#125;</span>\n&quot;</span>);<span class="comment">//func.EndInvoke(r)；结果为2021。</span></span><br><span class="line">                     Console.WriteLine(<span class="string">&quot;________&quot;</span> + r.AsyncState + <span class="string">&quot;状态\n&quot;</span>);</span><br><span class="line">                     Console.WriteLine(<span class="string">&quot;________&quot;</span>);</span><br><span class="line">                 &#125;, <span class="string">&quot;ljk&quot;</span>);</span><br><span class="line"></span><br><span class="line">               <span class="comment">//Console.WriteLine($&quot;func.EndInvoke(asyncResult)=&#123;func.EndInvoke(asyncResult)&#125;&quot;);//可以拿到结果值</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;全部计算真的都完成了，然后给用户返回<span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;000000&quot;</span>)&#125;</span>&quot;</span>);</span><br><span class="line">            Console.WriteLine(<span class="string">$&quot;****************btnAsyncAdvanced_Click End   <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;000000&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>![IMAGE](resources/7A1C7A4EA248C639D2051E728AF58B1E.png =1098x343)</p>
+<p><strong>附：如何将类封装起来，提供成一个dll？</strong></p>
+<hr>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>Tread、TreadPool、Task、Parallel</strong></p>
+<h3 id="1、Tread-线程"><a href="#1、Tread-线程" class="headerlink" title="1、Tread 线程"></a><strong>1、Tread 线程</strong></h3><p><strong>.Net 1.0 时代</strong></p>
+<p><strong>01、线程的开启、挂起、唤醒、销毁、取消销毁</strong></p>
+<hr>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Action action = () =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreads_Click&quot;</span>);<span class="comment">//无参数无返回值的委托</span></span><br><span class="line">ThreadStart threadStart = () =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreads_Click&quot;</span>);<span class="comment">//ThreadStart类似于Action，但又不同</span></span><br><span class="line"><span class="comment">//Thread thread = new Thread(action);//这个是错的，虽然类型样式一样，但类型是不同的</span></span><br><span class="line">Thread thread = <span class="keyword">new</span> Thread(threadStart);</span><br><span class="line">thread.Start();</span><br><span class="line">thread.Suspend();<span class="comment">//线程挂起（已被放弃，容易导致死锁）资源的占用</span></span><br><span class="line">thread.Resume(); <span class="comment">//唤醒（已被放弃，容易导致死锁）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    thread.Abort();<span class="comment">//销毁，方式是抛异常。也不建议（不一定及时/有些动作发出收不回来）</span></span><br><span class="line">&#125;</span><br><span class="line">catch (Exception)</span><br><span class="line">&#123;</span><br><span class="line">    Thread.ResetAbort();<span class="comment">//取消Abort异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>02、线程等待</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程等待</span></span><br><span class="line">thread.Join(<span class="number">500</span>);<span class="comment">//最多等500，Join可以重载。</span></span><br><span class="line">Console.WriteLine(<span class="string">&quot;等待500ms&quot;</span>);</span><br><span class="line">thread.Join();<span class="comment">//当前线程等待thread完成</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (thread.ThreadState != ThreadState.Stopped)</span><br><span class="line">&#123;</span><br><span class="line">  Thread.Sleep(<span class="number">100</span>);<span class="comment">//当前线程 休息100ms</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>03、前台线程和后台线程</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(thread.IsBackground);<span class="comment">//默认是flase。 前台线程，启动之后一定要完成任务的，阻止进程退出。</span></span><br><span class="line">thread.IsBackground = <span class="literal">true</span>;<span class="comment">//指定后台线程：随着进程退</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>04、线程的优先级</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">thread.Priority = ThreadPriority.Highest;<span class="comment">//线程优先级 CPU优先执行Highest</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、ThreadPool-线程池"><a href="#2、ThreadPool-线程池" class="headerlink" title="2、ThreadPool 线程池"></a>2、ThreadPool 线程池</h3><p><strong>.Net 2.0 时代</strong></p>
+<p>线程池——享元模式——数据库连接池</p>
+<p>01、Thread提供了太多的API，大部分意义不大。容易误伤… …</p>
+<p>02、会无限使用线程，加以限制。</p>
+<p>03、重用线程，避免重复的创建和销毁！准备容器Pool，减少创建和销毁的开销。</p>
+<p><strong>01、线程池启动多线程</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Console.WriteLine(<span class="string">$&quot;****************btnThreadPool_Click Start <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">Thread.Sleep(<span class="number">10</span> * <span class="number">1000</span>);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;前面的计算都完成了。。。。。。。。&quot;</span>);</span><br><span class="line"></span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><strong>02、线程池的最大线程数、最小线程数</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ThreadPool.SetMaxThreads(<span class="number">16</span>, <span class="number">16</span>);</span><br><span class="line">ThreadPool.SetMinThreads(<span class="number">8</span>, <span class="number">8</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ThreadPool.GetMaxThreads(<span class="keyword">out</span> <span class="built_in">int</span> workerThreads, <span class="keyword">out</span> <span class="built_in">int</span> completionPortThreads);</span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;GetMaxThreads workerThreads=<span class="subst">&#123;workerThreads&#125;</span> completionPortThreads=<span class="subst">&#123;completionPortThreads&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  ThreadPool.GetMinThreads(<span class="keyword">out</span> <span class="built_in">int</span> workerThreads, <span class="keyword">out</span> <span class="built_in">int</span> completionPortThreads);</span><br><span class="line">  Console.WriteLine(<span class="string">$&quot;GetMinThreads workerThreads=<span class="subst">&#123;workerThreads&#125;</span> completionPortThreads=<span class="subst">&#123;completionPortThreads&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>03、ThreadPool 线程等待</strong></p>
+<p><strong>ManualResetEvent 手动重置事件。其他Api基本取消了。</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类  包含了一个bool属性</span></span><br><span class="line"><span class="comment">//false--WaitOne等待--Set--true--WaitOne直接过去</span></span><br><span class="line"><span class="comment">//true--WaitOne直接过去--ReSet--false--WaitOne等待</span></span><br><span class="line">ManualResetEvent manualResetEvent = <span class="keyword">new</span> ManualResetEvent(<span class="literal">false</span>);</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>);</span><br><span class="line">    manualResetEvent.Set();</span><br><span class="line">    <span class="comment">//manualResetEvent.Reset();</span></span><br><span class="line">&#125;);</span><br><span class="line">manualResetEvent.WaitOne(); </span><br></pre></td></tr></table></figure>
+
+<p>但是一般来说，不要阻塞线程池的线程。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">int</span> k = i;</span><br><span class="line">  ThreadPool.QueueUserWorkItem(t =&gt;   <span class="comment">//开启线程池</span></span><br><span class="line">  &#123;</span><br><span class="line">    Console.WriteLine(k);<span class="comment">//用i会报错</span></span><br><span class="line">    <span class="keyword">if</span> (k &lt; <span class="number">18</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">//manualResetEvent.Reset();//设置为false</span></span><br><span class="line">      manualResetEvent.WaitOne();<span class="comment">//设置为false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        manualResetEvent.Set();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (manualResetEvent.WaitOne())</span><br><span class="line">&#123;</span><br><span class="line">  Console.WriteLine(<span class="string">&quot;没有死锁、、、&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>04、线程池的重用</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">Thread.Sleep(<span class="number">10</span> * <span class="number">1000</span>);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;前面的计算都完成了。。。。。。。。&quot;</span>);</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br><span class="line">ThreadPool.QueueUserWorkItem(t =&gt; <span class="keyword">this</span>.DoSomethingLong(<span class="string">&quot;btnThreadPool_Click&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DoSomethingLong</span>(<span class="params"><span class="built_in">string</span> name</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;****************DoSomethingLong <span class="subst">&#123;name&#125;</span> Start <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span>***************&quot;</span>);</span><br><span class="line">    <span class="built_in">long</span> lResult = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000000000</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        lResult += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//Thread.Sleep(2000);</span></span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;****************DoSomethingLong <span class="subst">&#123;name&#125;</span>   End <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;00&quot;</span>)&#125;</span> <span class="subst">&#123;DateTime.Now.ToString(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.fff&quot;</span>)&#125;</span> <span class="subst">&#123;lResult&#125;</span>***************&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>![IMAGE](resources/CB9A1F9BF5EC5814354988EB340CAFDE.png =1376x411)</p>
+<p><strong>05、线程的回调</strong></p>
+<p>**<br>**</p>
+<p>** 基于Thread线程的回调**</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//启动子线程计算--完成委托后，该线程去执行后续回调委托</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ThreadWithCallback</span>(<span class="params">Action act, Action callback</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  Thread thread = <span class="keyword">new</span> Thread(() =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">      act.Invoke();</span><br><span class="line">      callback.Invoke();<span class="comment">//和委托的异步调用一样的</span></span><br><span class="line">  &#125;);</span><br><span class="line">  thread.Start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.ThreadWithCallback(() =&gt; Console.WriteLine(<span class="string">$&quot;这里是action  <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;000&quot;</span>)&#125;</span>&quot;</span>),</span><br><span class="line">                        () =&gt; Console.WriteLine(<span class="string">$&quot;这里是callback  <span class="subst">&#123;Thread.CurrentThread.ManagedThreadId.ToString(<span class="string">&quot;000&quot;</span>)&#125;</span>&quot;</span>));</span><br><span class="line">Console.WriteLine(<span class="string">&quot;这里是主线程！！&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="resources/FA8E8003AE7AE063DA1B8556FF31BDDA.png"></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//带返回的异步调用,需要获取返回值。</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">Func</span>&lt;<span class="title">T</span>&gt; <span class="title">ThreadWithReturn</span>&lt;<span class="title">T</span>&gt;(<span class="params">Func&lt;T&gt; func</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  T t = <span class="literal">default</span>(T); <span class="comment">// default关键字？?</span></span><br><span class="line">  Thread thread = <span class="keyword">new</span> Thread(() =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    t = func.Invoke();</span><br><span class="line">  &#125;);</span><br><span class="line">  thread.Start();</span><br><span class="line">  <span class="keyword">return</span> () =&gt;</span><br><span class="line">  &#123;</span><br><span class="line">    thread.Join();</span><br><span class="line">    <span class="keyword">return</span> t;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Func&lt;<span class="built_in">int</span>&gt; func = <span class="keyword">this</span>.ThreadWithReturn&lt;<span class="built_in">int</span>&gt;(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    Thread.Sleep(<span class="number">2000</span>);</span><br><span class="line">    <span class="keyword">return</span> DateTime.Now.Year;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">Console.WriteLine(<span class="string">&quot;这里是主线程！！&quot;</span>);</span><br><span class="line"><span class="built_in">int</span> iResult = func.Invoke();</span><br><span class="line">Console.WriteLine(iResult);</span><br></pre></td></tr></table></figure>
+
+<p>![IMAGE](resources/EA398D4B7796B6DB35E9050768E64CC7.png =975x106)</p>
 
     
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          梁俊可
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://ljk3d.com/2021/10/19/cSharpNote/CSharp高级进阶教程_12_异步和多线程（委托的异步使用）/" title="C#高级进阶教程_12_异步和多线程（委托的异步使用）" target="_blank">http://ljk3d.com/2021/10/19/cSharpNote/CSharp高级进阶教程_12_异步和多线程（委托的异步使用）/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          梁俊可工作室
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C#高级进阶课程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://ljk3d.com/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E5%BC%82%E6%AD%A5%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%88%E5%A7%94%E6%89%98%E7%9A%84%E5%BC%82%E6%AD%A5%E4%BD%BF%E7%94%A8%EF%BC%89/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+
+<nav id="article-nav">
+  
+    <a href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_12_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A003/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          C#高级进阶教程_12_阶段练习03
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/19/cSharpNote/NHibernate%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%BA%94%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C#高级进阶教程_000_值类型和引用类型</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+<div id="SOHUCS" sid="cSharpNote/CSharp高级进阶教程_12_异步和多线程（委托的异步使用）" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
 
 
           </div>
@@ -328,8 +709,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
@@ -416,7 +797,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C#高级进阶课程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">MySQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">MR</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -425,6 +814,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Go基础课技术笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Unity基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">HtmlAndCSS</a>
               </li>
             
             <div class="clearfix"></div>

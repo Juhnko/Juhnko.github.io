@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ljk3d.com">
-  <title>15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁 | 梁俊可_个人博客</title>
+  <title>04_GoLang语言正式课_Go网络编程_HTTP编程 | 梁俊可_个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1、同步&#x2F;异步： ** 同步：sync**  one by one 一个接一个，串行  异步：async  并行，同时执行  异步任务：  同时执行，“并发”。">
+  <meta name="description" content="Http服务器又称Web服务器（通常使用http协议）。 1、Web工作方式：![QQ截图20210906113528.png](resources&#x2F;019B1E5972BC52C43B0FD8A7FF32AB53.png &#x3D;1091x470)  1. 客户端 ——&gt; 访问 www.baidu.com ——&gt; DNS 服务器。 返回 该域名对应的 IP地址。 2. 客户端 ——&gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁">
-<meta property="og:url" content="http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/15_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B04_WaitGroup%E5%92%8C%E4%BA%92%E6%96%A5%E9%94%81/index.html">
+<meta property="og:title" content="04_GoLang语言正式课_Go网络编程_HTTP编程">
+<meta property="og:url" content="http://ljk3d.com/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="梁俊可_个人博客">
-<meta property="og:description" content="1、同步&#x2F;异步： ** 同步：sync**  one by one 一个接一个，串行  异步：async  并行，同时执行  异步任务：  同时执行，“并发”。">
+<meta property="og:description" content="Http服务器又称Web服务器（通常使用http协议）。 1、Web工作方式：![QQ截图20210906113528.png](resources&#x2F;019B1E5972BC52C43B0FD8A7FF32AB53.png &#x3D;1091x470)  1. 客户端 ——&gt; 访问 www.baidu.com ——&gt; DNS 服务器。 返回 该域名对应的 IP地址。 2. 客户端 ——&gt;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-19T03:29:21.415Z">
-<meta property="article:modified_time" content="2021-10-19T06:37:16.328Z">
+<meta property="article:published_time" content="2021-10-19T05:44:54.994Z">
+<meta property="article:modified_time" content="2021-10-19T05:53:29.023Z">
 <meta property="article:author" content="梁俊可">
-<meta property="article:tag" content="Go基础课技术笔记">
+<meta property="article:tag" content="Go正式课技术笔记">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="梁俊可_个人博客" type="application/atom+xml">
@@ -242,14 +242,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-goLangNote/goLangBasic/15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-goLangNote/goLangAdvance/04_GoLang语言正式课_Go网络编程_HTTP编程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁
+      04_GoLang语言正式课_Go网络编程_HTTP编程
     </h1>
   
 
@@ -261,8 +261,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/10/19/goLangNote/goLangBasic/15_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B04_WaitGroup%E5%92%8C%E4%BA%92%E6%96%A5%E9%94%81/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.415Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+<a href="/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2021-10-19T05:44:54.994Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
   
@@ -275,7 +275,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.6k字</span>
+      <span class="post-count">888字</span>
     </span>
   </span>
 
@@ -284,7 +284,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -295,75 +295,139 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="1、同步-异步："><a href="#1、同步-异步：" class="headerlink" title="1、同步/异步："></a><strong>1、同步/异步：</strong></h3><p> ** 同步：sync**</p>
-<p> one by one 一个接一个，串行</p>
-<p> <strong>异步：async</strong></p>
-<p> 并行，同时执行</p>
-<p> <strong>异步任务</strong>：</p>
-<p> <strong>同时执行</strong>，“并发”。</p>
+    <p>Http服务器又称Web服务器（通常使用http协议）。</p>
+<h3 id="1、Web工作方式："><a href="#1、Web工作方式：" class="headerlink" title="1、Web工作方式："></a>1、Web工作方式：</h3><p>![QQ截图20210906113528.png](resources/019B1E5972BC52C43B0FD8A7FF32AB53.png =1091x470)</p>
+<ul>
+<li>1. 客户端 ——&gt; 访问 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> ——&gt; <strong>DNS 服务器</strong>。 返回 <strong>该域名对应的 IP地址</strong>。</li>
+<li>2. 客户端 ——&gt; IP + port ——&gt; 访问 网页数据。（<strong>TCP 连接</strong>。 <strong>HTTP协议。</strong>）</li>
+</ul>
+<h3 id="2、Http协议："><a href="#2、Http协议：" class="headerlink" title="2、Http协议："></a>2、Http协议：</h3><ul>
+<li><p><strong>超文本传输协议（HTTP, HyperText Transfer Protocol）</strong>是互联网上应用最为广泛的一种网络协议，他详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。</p>
+</li>
+<li><p>Http协议通常承载于<strong>TCP协议之上</strong>，有时也承载于<strong>TLS和SSL协议层</strong>之上，这个时候，就成了我们常说的<strong>HTTPS</strong>。</p>
+<p><strong>http:明文。 https：加密传输。</strong></p>
+</li>
+</ul>
+<p>** varshark抓包工具**</p>
+<ul>
+<li><p>http网站可以被抓包，用户名+密码</p>
+<p>![QQ截图20210906115006.png](resources/E13E5833CCADC7ED90EAF05944835556.png =492x370)</p>
 <span id="more"></span>
-<h3 id="2、WaitGroup-同步等待组"><a href="#2、WaitGroup-同步等待组" class="headerlink" title="2、WaitGroup: 同步等待组"></a>2、WaitGroup: 同步等待组</h3><p> 执行了wait的goroutine，要等待同步等待组中其他的goroutine执行完毕。</p>
+<h3 id="3、地址（URL）："><a href="#3、地址（URL）：" class="headerlink" title="3、地址（URL）："></a>3、地址（URL）：</h3></li>
+<li><p><strong>URL全称为 Unique Resource Location,</strong> 用来表示网络资源，可以理解为网络文件路径。</p>
+</li>
+<li><p>基于URL的结构包含模式（协议）、服务器名称（IP地址）、路径和文件名。</p>
 <ul>
-<li><p><strong>内置计数器</strong>：</p>
+<li>常见的协议/模式。如：Http、Https、ftp等。</li>
+</ul>
+</li>
+<li><p>服务器的名称或IP地址后面有时会跟一个冒号或一个端口号。再后面是到达这个文件的路径和文件本事的名称。</p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//192.168.1.90:5566/LJK3D/index.html</span></span><br></pre></td></tr></table></figure>
+
+<p>** 注意⚠️：** </p>
+<p> URL的长度有限制，不同的服务器的限制值不太相同，但是不能无限长。</p>
+<h3 id="4、HTTP报文解析："><a href="#4、HTTP报文解析：" class="headerlink" title="4、HTTP报文解析："></a>4、HTTP报文解析：</h3><p>![QQ截图20210906135538.png](resources/872EAABBE88E317C760280343862EB96.png =749x302)</p>
+<p>![QQ截图20210906143051.png](resources/B7A3B4B9702E618226A38ECABBC7E094.png =955x483)</p>
+<p>![QQ截图20210906142951.png](resources/55F035776BEBB4455FAD659C29A1021A.png =1037x451)</p>
+<h3 id="01、-请求报文格式："><a href="#01、-请求报文格式：" class="headerlink" title="** 01、 请求报文格式： **"></a>** 01、 请求报文格式： **</h3><ul>
+<li><p><strong>请求行：</strong></p>
 <ul>
-<li>初始值为：counter:0</li>
-<li>要执行的goroutine的数量</li>
+<li><strong>请求方法 +（空格） + 请求文件URL “/” +（空格）+ 协议版本（http/1.1）+ “\r\n****”</strong></li>
+<li><strong>Get</strong></li>
+<li><strong>Post</strong></li>
 </ul>
 </li>
-<li><p>**Add(3), **设置计数器的数量, 设置counter的值</p>
-</li>
-<li><p>** Done(), **将内置的计数器的数值减1。同add(-1) counter的值-1</p>
-</li>
-<li><p>**Wait(), **等待，导致执行wait的goroutine进入阻塞状态。同步等待组中的计数器的值为0，解除阻塞。</p>
-</li>
-</ul>
-<p> Add(3),三个goroutine要执行</p>
-<p> …</p>
-<p> 子goroutine：函数，最后一行Done() 计数器减1</p>
-<p> wait() 主程序等待</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math/rand&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	wg.Add(<span class="number">2</span>) <span class="comment">//等待n个执行完毕</span></span><br><span class="line">	<span class="keyword">go</span> printNum1(&amp;wg)</span><br><span class="line">	<span class="keyword">go</span> printNum2(&amp;wg)</span><br><span class="line">	wg.Wait() <span class="comment">//主程序main函数中执行了Wait(),进入阻塞状态。底层计数器为0，解除阻塞。</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;main...over...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printNum1</span><span class="params">(wg *sync.WaitGroup)</span></span> &#123; <span class="comment">//值类型传递地址，不用副本拷贝</span></span><br><span class="line">	rand.Seed(time.Now().UnixNano())</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">100</span>; i++ &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;子goroutine1中，i:&quot;</span>, i)</span><br><span class="line">		<span class="comment">//time.Sleep(time.Duration(rand.Intn(1000)))</span></span><br><span class="line">	&#125;</span><br><span class="line">	wg.Done()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printNum2</span><span class="params">(wg *sync.WaitGroup)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> j := <span class="number">1</span>; j &lt;= <span class="number">100</span>; j++ &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;\t子goroutine2中，j:&quot;</span>, j)</span><br><span class="line">		<span class="comment">//time.Sleep(time.Duration(rand.Intn(1000)))</span></span><br><span class="line">	&#125;</span><br><span class="line">	wg.Done()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、互斥锁："><a href="#3、互斥锁：" class="headerlink" title="3、互斥锁："></a>3、互斥锁：</h2><ul>
-<li>** 并发读取全局数据时,会出问题，利用”锁”解决问题。**</li>
-</ul>
-<p> 开 / 关，”上厕所”的例子</p>
+<li><p><strong>请求头部</strong></p>
 <ul>
-<li><strong>锁头对象 （struct）</strong></li>
-<li><strong>互斥：锁定—解锁</strong><ul>
-<li><strong>有两个指针方法</strong><ul>
-<li><strong>Lock(),上锁</strong><ul>
-<li>阻塞的：只能有一个goroutine上锁，其他的goroutine处于阻塞状态。</li>
+<li><strong>Key1:Value1</strong></li>
+<li><strong>Key2:Value2</strong></li>
+<li><strong>Key3:Value3</strong></li>
+<li><strong>…</strong></li>
 </ul>
 </li>
-<li><strong>Unlock(),开锁</strong></li>
+<li><p>**空行：\r\n—-回车换行。 **</p>
+<ul>
+<li><strong>代表http请求头结束</strong></li>
+</ul>
+</li>
+<li><p><strong>请求包体</strong></p>
+<ul>
+<li><strong>请求方法对应的数据内容</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="02、响应报文格式："><a href="#02、响应报文格式：" class="headerlink" title="02、响应报文格式："></a>02、响应报文格式：</h3><ul>
+<li>要想获取响应报文，必须先发送请求报文给Web服务器。服务器收到并解析浏览器（客户端）发送的请求报文后，借助http协议，回复相对应的响应报文。</li>
+<li>借助net/http包，创建一个简单的服务器，给浏览器回发响应包。<ul>
+<li>首先<strong>注册处理函数http.HandleFunc()</strong>,设置<strong>回调函数handler</strong>。</li>
+<li><strong>绑定服务器的监听地址http.ListenAndServer（）</strong></li>
+</ul>
+</li>
+<li>这个服务器启动后，当有浏览器发送请求，回调函数被调用，会向浏览器回复“hello world”作为网页内容<ul>
+<li>按照http协议的格式进行回复。</li>
+</ul>
+</li>
+</ul>
+<p>![QQ截图20210906160549.png](resources/0EAA4BE59877632E7E7C2DBAE39FF308.png =626x283)</p>
+<p>![QQ截图20210906160559.png](resources/87AD85CAB124E6FFE715EA470C5A81C2.png =552x232)</p>
+<ul>
+<li>应答行<ul>
+<li><strong>协议版本（http/1.1) + 空格 + 状态代码（200 OK）</strong></li>
+</ul>
+</li>
+<li>应答头<ul>
+<li><strong>Key1:Value1</strong></li>
+<li><strong>Key2:Value2</strong></li>
+<li><strong>Key3:Value3</strong></li>
+<li><strong>…</strong></li>
+</ul>
+</li>
+<li>空行<ul>
+<li><strong>代表http应答头结束</strong></li>
+</ul>
+</li>
+<li>应答包体<ul>
+<li>响应数据内容</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用-net-http包-创建-web-服务器"><a href="#使用-net-http包-创建-web-服务器" class="headerlink" title="使用 net/http包 创建 web 服务器"></a>使用 net/http包 创建 web 服务器</h3><ul>
+<li><p>注册回调函数。</p>
+<ul>
+<li><strong>http.HandleFunc(</strong>“/itcast”, handler)<ul>
+<li>参1：用户访问文件位置</li>
+<li>参2：回调函数名 —— 函数必须是 (w http.ResponseWriter, r *http.Request) 作为参数。</li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p>绑定服务器监听地址。</p>
+<ul>
+<li><strong>http.ListenAndServe</strong>(“127.0.0.1:8000”, nil)</li>
 </ul>
-<p><strong>3.1、可能存在问题的案例：</strong></p>
-<p>银行存钱问题，同时进行，在读取完后，未来得及写入的情况下，又进行了读取… … ****</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math/rand&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> ticks <span class="keyword">int</span> = <span class="number">1000</span>                               <span class="comment">//存在共享数据，同时子go程存在读完之后，同时写，出现混乱... ...</span></span><br><span class="line"><span class="keyword">var</span> _wg sync.WaitGroup</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		售票：四个窗口一块售出100张票</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	_wg.Add(<span class="number">4</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks(<span class="string">&quot;售票厅1&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks(<span class="string">&quot;售票厅2&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks(<span class="string">&quot;售票厅3&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks(<span class="string">&quot;售票厅4&quot;</span>)</span><br><span class="line">	_wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;main...over...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saleTicks</span><span class="params">(name <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	rand.Seed(time.Now().UnixNano())</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> ticks &gt; <span class="number">0</span> &#123;</span><br><span class="line">			time.Sleep(time.Duration(rand.Intn(<span class="number">5000</span>)))</span><br><span class="line">			fmt.Println(name, <span class="string">&quot;:&quot;</span>, ticks)</span><br><span class="line">			ticks--</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Println(name, <span class="string">&quot;结束买票了！！！&quot;</span>)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	_wg.Done()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">售票厅<span class="number">4</span> : <span class="number">49</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">49</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">47</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">49</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">46</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">46</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">43</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">42</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">43</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">41</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">40</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">38</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">37</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">37</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">35</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">37</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">33</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">34</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">32</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">31</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">29</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">29</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">29</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">26</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">26</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">24</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">23</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">27</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">22</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">21</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">22</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">18</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">17</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">17</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">16</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">15</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">14</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">12</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">12</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">10</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">10</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">9</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">7</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">6</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">5</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">4</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">4</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">3</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">3</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">-1</span></span><br><span class="line">售票厅<span class="number">1</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">-2</span></span><br><span class="line">售票厅<span class="number">3</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">2</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">4</span> 结束买票了！！！</span><br><span class="line">main...over...</span><br></pre></td></tr></table></figure>
-
-<p><strong>3.2、****互斥锁：</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> mutex sync.Mutex</span><br><span class="line">	fmt.Println(<span class="string">&quot;main,即将锁定mutex&quot;</span>)</span><br><span class="line">	mutex.Lock() <span class="comment">//锁定产生互斥</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;main已经锁定mutex&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(j <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;子goroutine&quot;</span>, j, <span class="string">&quot;即将锁定mutex&quot;</span>)</span><br><span class="line">			mutex.Lock() <span class="comment">//阻塞</span></span><br><span class="line">			fmt.Println(<span class="string">&quot;子goroutine&quot;</span>, j, <span class="string">&quot;已经锁定！！！&quot;</span>)</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;main,即将解锁mutex&quot;</span>)</span><br><span class="line">	mutex.Unlock()</span><br><span class="line">	fmt.Println(<span class="string">&quot;main,已经解锁mutex&quot;</span>)</span><br><span class="line">	<span class="comment">//mutex.Unlock()//报错了！unlock of unlocked mutex</span></span><br><span class="line">	<span class="comment">//fmt.Println(&quot;main,想再解锁mutex&quot;)</span></span><br><span class="line">	time.Sleep(<span class="number">2</span> * time.Second)</span><br><span class="line">	fmt.Println(<span class="string">&quot;main...over...&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">main,即将锁定mutex              </span><br><span class="line">main已经锁定mutex                 </span><br><span class="line">  子goroutine <span class="number">3</span> 即将锁定mutex       <span class="comment">//Lock（）产生阻塞，执行不了。因为只有一把锁，主go程在使用，需要主go程解锁后，三个子go程争抢，谁可以继续锁定执行下面的内容！</span></span><br><span class="line">  子goroutine <span class="number">1</span> 即将锁定mutex</span><br><span class="line">  子goroutine <span class="number">2</span> 即将锁定mutex</span><br><span class="line"></span><br><span class="line">main,即将解锁mutex</span><br><span class="line">main,已经解锁mutex</span><br><span class="line">子goroutine <span class="number">3</span> 已经锁定！！！</span><br><span class="line">main...over...</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-3、利用互斥锁解决上述问题"><a href="#3-3、利用互斥锁解决上述问题" class="headerlink" title="3.3、利用互斥锁解决上述问题"></a><strong>3.3、利用互斥锁解决上述问题</strong></h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math/rand&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">var</span> ticks02 <span class="keyword">int</span> = <span class="number">2000</span></span><br><span class="line"><span class="keyword">var</span> wg02 sync.WaitGroup</span><br><span class="line"><span class="keyword">var</span> mutex02 sync.Mutex <span class="comment">//创建一个互斥锁</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		上了互斥锁之后，one by one执行，执行效率下降，但数据是安全的。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		售票：四个窗口一块售出100张票</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	wg02.Add(<span class="number">4</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks02(<span class="string">&quot;售票厅1&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks02(<span class="string">&quot;售票厅2&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks02(<span class="string">&quot;售票厅3&quot;</span>)</span><br><span class="line">	<span class="keyword">go</span> saleTicks02(<span class="string">&quot;售票厅4&quot;</span>)</span><br><span class="line">	wg02.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;main...over...&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saleTicks02</span><span class="params">(name <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	rand.Seed(time.Now().UnixNano())</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		mutex02.Lock()</span><br><span class="line">		<span class="keyword">if</span> ticks02 &gt; <span class="number">0</span> &#123;</span><br><span class="line">			time.Sleep(time.Duration(rand.Intn(<span class="number">5000</span>)))</span><br><span class="line">			fmt.Println(name, <span class="string">&quot;:&quot;</span>, ticks02)</span><br><span class="line">			ticks02--</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Println(name, <span class="string">&quot;结束买票了！！！&quot;</span>)</span><br><span class="line">			mutex02.Unlock() <span class="comment">//跳出之前，要先解锁</span></span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		mutex02.Unlock()</span><br><span class="line">	&#125;</span><br><span class="line">	wg02.Done()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>结果：</strong></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">售票厅<span class="number">1</span> : <span class="number">50</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">49</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">48</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">47</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">46</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">45</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">44</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">43</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">42</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">41</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">40</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">39</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">38</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">37</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">36</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">35</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">34</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">33</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">32</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">31</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">30</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">29</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">28</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">27</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">26</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">25</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">24</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">23</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">22</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">21</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">20</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">19</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">18</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">17</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">16</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">15</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">14</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">13</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">12</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">11</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">10</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">9</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">8</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">7</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">6</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">5</span></span><br><span class="line">售票厅<span class="number">2</span> : <span class="number">4</span></span><br><span class="line">售票厅<span class="number">4</span> : <span class="number">3</span></span><br><span class="line">售票厅<span class="number">3</span> : <span class="number">2</span></span><br><span class="line">售票厅<span class="number">1</span> : <span class="number">1</span></span><br><span class="line">售票厅<span class="number">1</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">2</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">4</span> 结束买票了！！！</span><br><span class="line">售票厅<span class="number">3</span> 结束买票了！！！</span><br><span class="line">main...over...</span><br></pre></td></tr></table></figure>
-
-
-
-<p>⚠️<strong>注意：</strong></p>
-<p>** 需要 对c#j进阶课的异步多线程的互斥锁进一步加强！**</p>
-<hr>
+</li>
+</ul>
+<p><strong>回调函数：</strong></p>
+<ul>
+<li><p>Var p *int</p>
+</li>
+<li><p>Var p func(int, string){} // 函数名—-函数的地址</p>
+</li>
+<li><p>本质：函数指针。</p>
+<ul>
+<li>通过地址，在某一位置，调用函数。</li>
+</ul>
+</li>
+<li><p>在程序中，定义一个函数，但不显示调用，当某一条件满足时，该函数由操作自动调用。</p>
+</li>
+<li><p>回调函数是多态的体现，函数作为参数使用。</p>
+</li>
+</ul>
+<p>![IMAGE](resources/F7D634AA1F46F41497129A873AC8CCE6.jpg =460x196)</p>
+<p>![IMAGE](resources/1D0F1AB39F0F1655B6D6F6DD2AF8544F.jpg =480x165)</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><hr>
 
     
 
@@ -410,7 +474,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁/" title="15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁" target="_blank">http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁/</a>
+          <a href="http://ljk3d.com/2021/10/19/goLangNote/goLangAdvance/04_GoLang语言正式课_Go网络编程_HTTP编程/" title="04_GoLang语言正式课_Go网络编程_HTTP编程" target="_blank">http://ljk3d.com/2021/10/19/goLangNote/goLangAdvance/04_GoLang语言正式课_Go网络编程_HTTP编程/</a>
         </li>
         
         <li>
@@ -432,7 +496,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go基础课技术笔记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Go正式课技术笔记</a>
         		</li>
       		
 		</ul>
@@ -488,7 +552,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/15_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B04_WaitGroup%E5%92%8C%E4%BA%92%E6%96%A5%E9%94%81/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://ljk3d.com/2021/10/19/goLangNote/goLangAdvance/04_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_HTTP%E7%BC%96%E7%A8%8B/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -503,18 +567,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/10/19/goLangNote/goLangBasic/14_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B03_channel%E9%80%9A%E9%81%93%E3%80%81%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E3%80%81select%E8%AF%AD%E5%8F%A5%E3%80%81%E8%B6%85%E6%97%B6%E5%A4%84%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/10/19/goLangNote/goLangAdvance/03_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E5%B9%B6%E5%8F%91%E8%81%8A%E5%A4%A9%E5%AE%A4%E2%80%94%E2%80%94go%E7%89%B9%E6%80%A7%E9%AB%98%E5%B9%B6%E5%8F%91%E6%A0%B8%E5%BF%83%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          14_GoLang语言入门_基础语法_并发与多线程03_channel通道、生产者和消费者、select语句、超时处理
+          03_GoLang语言正式课_Go网络编程_并发聊天室——go特性高并发核心的使用
         
       </div>
     </a>
   
   
-    <a href="/2021/10/19/goLangNote/goLangBasic/16_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%B9%B6%E5%8F%91%E4%B8%8E%E5%A4%9A%E7%BA%BF%E7%A8%8B05_%E8%AF%BB%E5%86%99%E9%94%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">16_GoLang语言入门_基础语法_并发与多线程05_读写锁</div>
+    <a href="/2021/10/19/goLangNote/goLangAdvance/05_GoLang%E8%AF%AD%E8%A8%80%E6%AD%A3%E5%BC%8F%E8%AF%BE_Go%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B_%E7%88%AC%E8%99%AB%E5%BC%80%E5%8F%91_20180814_3%E5%B9%B4%E5%89%8D%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">05_GoLang语言正式课_Go网络编程_爬虫开发_20180814_3年前录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -541,7 +605,7 @@
 
 
 
-<div id="SOHUCS" sid="goLangNote/goLangBasic/15_GoLang语言入门_基础语法_并发与多线程04_WaitGroup和互斥锁" ></div> 
+<div id="SOHUCS" sid="goLangNote/goLangAdvance/04_GoLang语言正式课_Go网络编程_HTTP编程" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({

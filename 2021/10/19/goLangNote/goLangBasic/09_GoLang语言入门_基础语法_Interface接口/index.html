@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://ljk3d.com">
-  <title>Archives: 2021 | 梁俊可_个人博客</title>
+  <title>09_GoLang语言入门_基础语法_Interface接口 | 梁俊可_个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Unity开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="梁俊可_个人博客">
-<meta property="og:url" content="http://ljk3d.com/archives/2021/index.html">
+  <meta name="description" content="一、概念： 关键字 interface  面向对象世界中的接口，一般定义是”接口定义对象的行为” 功能定义抽取出来，实现不要。    类与接口：类：  属性–&gt;变量 行为——&gt;方法  接口：  功能的描述——&gt;方法声明  功能的实现——&gt;方法体  接口是功能的描述的集合。*    接口定义具有哪些功能即可，不需要功能的实现。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="09_GoLang语言入门_基础语法_Interface接口">
+<meta property="og:url" content="http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/09_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Interface%E6%8E%A5%E5%8F%A3/index.html">
 <meta property="og:site_name" content="梁俊可_个人博客">
-<meta property="og:description" content="Unity开发">
+<meta property="og:description" content="一、概念： 关键字 interface  面向对象世界中的接口，一般定义是”接口定义对象的行为” 功能定义抽取出来，实现不要。    类与接口：类：  属性–&gt;变量 行为——&gt;方法  接口：  功能的描述——&gt;方法声明  功能的实现——&gt;方法体  接口是功能的描述的集合。*    接口定义具有哪些功能即可，不需要功能的实现。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-19T03:29:21.454Z">
+<meta property="article:modified_time" content="2021-10-19T03:43:58.747Z">
 <meta property="article:author" content="梁俊可">
-<meta property="article:tag" content="三维数字孪生,虚拟仿真,VR全景,党建开发">
+<meta property="article:tag" content="Go技术笔记">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="梁俊可_个人博客" type="application/atom+xml">
@@ -240,342 +242,173 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-goLangNote/goLangBasic/09_GoLang语言入门_基础语法_Interface接口" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.511Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/02_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E7%9B%B8%E4%BA%92%E8%BD%AC%E5%8C%96/" target="_blank">02_GoLang语言入门_二进制、八进制、十进制和十六进制相互转化</a>
   
+    <h1 class="article-title" itemprop="name">
+      09_GoLang语言入门_基础语法_Interface接口
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.507Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/03_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_01%E5%8F%98%E9%87%8F%E3%80%81%E5%B8%B8%E9%87%8F/" target="_blank">03_GoLang语言入门_基础语法_01变量、常量</a>
-  
-    </h1>
-  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/04_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_02%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.503Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/04_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_02%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E8%BF%90%E7%AE%97%E7%AC%A6/" target="_blank">04_GoLang语言入门_基础语法_02数据类型和运算符</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/05_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5%E5%92%8C%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.488Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/05_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5%E5%92%8C%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5/" target="_blank">05_GoLang语言入门_基础语法_分支语句和循环语句</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/06_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.476Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/06_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%87%E7%89%87/" target="_blank">06_GoLang语言入门_基础语法_数组和切片</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/07_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%87%BD%E6%95%B0/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.471Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/07_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%87%BD%E6%95%B0/" target="_blank">07_GoLang语言入门_基础语法_函数</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/08_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Struct/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.459Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/08_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Struct/" target="_blank">08_GoLang语言入门_基础语法_Struct</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
 <a href="/2021/10/19/goLangNote/goLangBasic/09_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Interface%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
         <time datetime="2021-10-19T03:29:21.454Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">468字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="一、概念："><a href="#一、概念：" class="headerlink" title="一、概念："></a>一、概念：</h3><p> 关键字 <strong>interface</strong></p>
+<ul>
+<li>面向对象世界中的接口，一般定义是”接口定义对象的行为”<ul>
+<li>功能定义抽取出来，实现不要。</li>
+</ul>
+</li>
+</ul>
+<h3 id="类与接口："><a href="#类与接口：" class="headerlink" title="类与接口："></a><strong>类与接口：</strong></h3><p><strong>类：</strong></p>
+<ul>
+<li>属性–&gt;变量</li>
+<li>行为——&gt;方法</li>
+</ul>
+<p><strong>接口：</strong></p>
+<ul>
+<li><p>功能的描述——&gt;方法声明</p>
+</li>
+<li><p>功能的实现——&gt;方法体</p>
+</li>
+<li><p><em>接口是功能的描述的集合。</em>*</p>
+</li>
+</ul>
+<p> 接口定义具有哪些功能即可，不需要功能的实现。</p>
+<span id="more"></span>
+<h3 id="二、Go语言中的面向接口编程"><a href="#二、Go语言中的面向接口编程" class="headerlink" title="二、Go语言中的面向接口编程"></a>二、Go语言中的面向接口编程</h3><p> <strong>面向接口编程——&gt;面向实现类编程 （定义——实现）</strong></p>
+<ul>
+<li>在Go中，<strong>接口是一组方法签名</strong>。当类型为接口中的所有方法提供定义时，它被称为实现接口。他与OOP非常类似。</li>
+<li><strong>接口指定了类型应该具有的方法，类型决定了如何实现这些方法。</strong></li>
+</ul>
+<p>**<br>**** 接口和实现类的关系 implements实现类**</p>
+<ul>
+<li>它把所有的具有共同的方法定义在一起，任何其他类型只要实现了这些方法就是实现了这个接口。</li>
+<li>接口定义了一组方法，如果某个对象实现了某个接口的所有方法，则此对象就是实现了该接口。</li>
+</ul>
+<p>接口：定义有哪些功能。 与之对应的是接口的实现类。</p>
+<h3 id="三、接口的意义："><a href="#三、接口的意义：" class="headerlink" title="三、接口的意义："></a>三、接口的意义：</h3><p><strong>耦合</strong>：程序与程序之间的关联程度。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>好的程序是降低耦合性。耦合度越低越好！</p>
+<p>接口设计的初衷是<strong>解耦合！</strong></p>
+<p><strong>继承关系：增加耦合。</strong></p>
+<p><strong>接口：降低耦合。</strong></p>
+<p>设计程序的一种思想。</p>
+<p>设计程序：使用数据库。</p>
+<hr>
+<p>数据库：SQLServer2008/Mysql/DB2/Sqlite/Access（不需要登陆） 增/删/改/查</p>
+<h2 id="面向接口编程：只考虑功能"><a href="#面向接口编程：只考虑功能" class="headerlink" title="面向接口编程：只考虑功能"></a><strong>面向接口编程：只考虑功能</strong></h2><p><strong>导入实现类！只调用发放使用即可，不考虑方法是如何实现的！</strong></p>
+<p><strong>接口：定义功能</strong></p>
+<ul>
+<li>** Insert()**</li>
+<li>** Delete()**</li>
+<li>** Update()**</li>
+<li>** Select()**</li>
+</ul>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/09_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Interface%E6%8E%A5%E5%8F%A3/" target="_blank">09_GoLang语言入门_基础语法_Interface接口</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
-
-        <div class="article-info info-on-right">
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          梁俊可
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/09_GoLang语言入门_基础语法_Interface接口/" title="09_GoLang语言入门_基础语法_Interface接口" target="_blank">http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/09_GoLang语言入门_基础语法_Interface接口/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          梁俊可工作室
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -587,109 +420,147 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://ljk3d.com/2021/10/19/goLangNote/goLangBasic/09_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Interface%E6%8E%A5%E5%8F%A3/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/10_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.438Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2021/10/19/goLangNote/goLangBasic/08_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_Struct/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          08_GoLang语言入门_基础语法_Struct
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/19/goLangNote/goLangBasic/10_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">010_GoLang语言入门_基础语法_异常处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/10_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" target="_blank">010_GoLang语言入门_基础语法_异常处理</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/goLangNote/goLangBasic/11_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BC%96%E8%AF%91/" class="archive-article-date">
-        <time datetime="2021-10-19T03:29:21.436Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/goLangNote/goLangBasic/11_GoLang%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8_%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95_%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%92%8C%E7%BC%96%E8%AF%91/" target="_blank">11_GoLang语言入门_基础语法_单元测试和编译</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Go技术笔记</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
+<div id="SOHUCS" sid="goLangNote/goLangBasic/09_GoLang语言入门_基础语法_Interface接口" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="page-number" href="/archives/2021/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
-  
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
 
 
           </div>
@@ -730,8 +601,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

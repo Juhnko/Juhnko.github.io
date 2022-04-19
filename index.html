@@ -223,6 +223,122 @@
             
 
   
+    <article id="post-unityNote/UnityUIFramework/deVoid UIFramework使用说明" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>一、deVoid UIFramework使用教程</strong></p>
+<hr>
+<p><strong>Step 1:</strong></p>
+<p> Right click on project view</p>
+<p> Create -&gt; deVoid UI -&gt; UIFrame Prefab</p>
+<p> then drag the Prefab onto your scene</p>
+<p><strong>Step 2:</strong></p>
+<p> Get a reference to your UI Frame and register some screens</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.RegisterScreen(<span class="string">&quot;YourScreenId&quot;</span>, yourScreenPrefab);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 3:</strong></p>
+<p> Show your screens</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.OpenWindow(<span class="string">&quot;YourWindowId&quot;</span>);</span><br><span class="line">uiFrame.ShowPanel(<span class="string">&quot;YourPanelId&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Or, if you have some data payload</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.OpenWindow(<span class="string">&quot;YourWindowId&quot;</span>, yourWindowProperties);</span><br><span class="line">uiFrame.ShowPanel(<span class="string">&quot;YourPanelId&quot;</span>, yourPanelProperties);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Step 4:</strong></p>
+<p> Now that you’re familiar with the API, right click on project view</p>
+<p>** Create -&gt; deVoid UI -&gt; UI Settings**</p>
+<p> Rig your UI Frame prefab as the UI Template, drag all your screens in the Screens To Register list and simply do</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uiFrame = yourUiSettings.CreateUIInstance();</span><br></pre></td></tr></table></figure>
+
+<p>Which will give you a new UI Frame instance and automatically do Step 2 for you.</p>
+<p>Make sure to check out the examples repo and read the manual!</p>
+<p><strong>What?</strong></p>
+<p>The deVoid UI Framework (or devUI for short) is a simple architecture for UI handling and navigation in Unity. It enforces one simple rule: you can never directly access the internals of your UI code from external code, but anything else is fair game. You want to read data from Singletons from inside your UI? Sure. You want to sandwich mediators, views and controllers and do MVC by the book? Go for it. You want to skip the data passing functionalities and use your own MVVM framework? Power to you. Do whatever floats your boat and works best for your needs.</p>
+<p><strong>Why?</strong></p>
+<p>Having worked with mobile F2P games for years, I’ve done my fair share of UI. And I hate doing UI.</p>
+<p>So I figured the more people learn how to do it, the smaller the chances that I ever have to do it again 🌈</p>
+<p>(Also, sharing is caring and I’m secretly a hippie)</p>
+<p><strong>Features</strong></p>
+<p>Simple to extend and customize</p>
+<p>Support for navigation history and queuing</p>
+<p>Transition animations</p>
+<p>Blocking user input while screens transition (especially handy for touch input)</p>
+<p>Priority and layering</p>
+<p>Focus on type safety and flexibility</p>
+<p>Known Limitations</p>
+<p>No built in support for controller navigation</p>
+<p><strong>二、deVoid UIFramework案例</strong></p>
+<p>![IMAGE](resources/FEFF2F9DF1BF974B97C5066050BB8752.jpg =1610x964)</p>
+<p>这个项目试图演示deVoidUI框架的功能。</p>
+<p>这些例子</p>
+<ul>
+<li>使用<strong>Signals</strong>作为<strong>消息传递系统</strong>，</li>
+<li>DOTween作为补间库，</li>
+<li>来自TheNounProject.com的图标。</li>
+</ul>
+<p> 框架试图尽可能<strong>不知道如何实现屏幕</strong>，但它试图实施一个非常具体的规则:<strong>您不能从外部访问内部UI代码</strong>。</p>
+<p> 除此之外，所有的事情都是公平的——你是知道必要的人和你的代码库应该有多复杂的人。</p>
+<p> 尽管它对于初学者来说足够简单，对于产品来说足够健壮，但在您的项目中使用它之前，我建议您阅读<a target="_blank" rel="noopener" href="https://github.com/yankooliveira/uiframework%E7%9A%84%E6%89%8B%E5%86%8C%E3%80%82">https://github.com/yankooliveira/uiframework的手册。</a></p>
+<p> 单击下面<strong>导航面板</strong>中的按钮查看一些示例。</p>
+<p><img src="UnityUIFramework/resources/4258C41A1D2A43FB15DA81F18227A4D5.png"></p>
+<p>当您试图显示面板或打开窗口时，您可以选择以<strong>Properties(属性)<strong>的形式</strong>传递数据</strong>有效负载。这是你的**ScreenController(屏幕控制器)**实现的强类型。</p>
+<p>试着选择Assets文件夹中的<strong>PlayerData ScriptableObject并更改其值</strong>。</p>
+<p><img src="UnityUIFramework/resources/48C2211FE70DFD04966C70955298EF45.png"><br>如果您不习惯将有效负载传递给UI，这可能看起来太麻烦了，但它可以帮助您分离关注点并减少耦合。而且，没有什么可以阻止您将非常动态的参数传入有效负载。</p>
+<p>一个例子是这个Warning Pop-Up，它有多种格式，这取决于您传递给它的有效负载。</p>
+<p>还要注意，弹出窗口本身没有任何代码来暗化屏幕;这些都是由UI框架本身控制的(因为这个预制件被设置为弹出式)。</p>
+<p>点击下面的按钮几次，然后检查<strong>ConfirmationPopupController.cs</strong>中的代码。</p>
+<p><img src="resources/4DDADC6C4CE0386F6AED057DEB3F514C.png" alt="555.png"></p>
+<p>UI框架并不真正关心你如何处理这个(事实上，你可以在Worldspace UI中有一个<strong>UI Screenspace Camera</strong>。</p>
+<p>这样做的好处是，你可以直接在UI预制件中添加其他Unity元素，如3d对象、线条渲染器和粒子系统。</p>
+<p>你会受限于UI是使用一个Ortographic相机,你需要调整着色器如果你需要透明,但是它可以节省你的成本使用RenderTextures和允许你有诸如后处理效果直接在UI相机。</p>
+<p><img src="resources/67619A77FD6690D0B37147E3A46335C5.png" alt="666.png"></p>
+<p>使用Screenspace-Camera的一个警告是，你所有的通常用于投影到Screenspace Overlay UI的操作都需要一个额外的跳跃:你需要从</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/04/19/unityNote/UnityUIFramework/deVoid%20UIFramework%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-cSharpNote2/设计模式——01观察者模式Observer_一只神奇的猫" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1175,102 +1291,6 @@
 
 
   
-    <article id="post-webNote/htmlAndCss/05_CSS基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/webNote/htmlAndCss/05_CSS%E5%9F%BA%E7%A1%80/" target="_blank">06_HTML&amp;CSS_正式课程</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/webNote/htmlAndCss/05_CSS%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-        <time datetime="2021-10-19T07:32:31.897Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="一、CSS选择器02"><a href="#一、CSS选择器02" class="headerlink" title="一、CSS选择器02"></a>一、CSS选择器02</h2><h3 id=""><a href="#" class="headerlink" title="****"></a>****</h3><h3 id="1、id选择器"><a href="#1、id选择器" class="headerlink" title="1、id选择器"></a><strong>1、id选择器</strong></h3><ul>
-<li>通过id名来选择元素，元素的id名称不能重复，所以一个样式设置项只能对应页面上的一个元素，<strong>不能复用</strong>。<ul>
-<li>id名一般给程序使用，所以不推荐使用id作为选择器。</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># box&#123;color:red&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;box&quot;</span>&gt;</span>这是一个段落标签<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/19/webNote/htmlAndCss/05_CSS%E5%9F%BA%E7%A1%80/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HtmlAndCSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/webNote/htmlAndCss/05_CSS%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1285,7 +1305,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 <a href="http://ljk3d.com/" target="_blank">梁俊可</a>
+    		&copy; 2021-2022 <a href="http://ljk3d.com/" target="_blank">梁俊可</a>
     	</div>
       	<div class="footer-right">
 			

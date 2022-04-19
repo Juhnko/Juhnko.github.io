@@ -223,6 +223,97 @@
             
 
   
+    <article id="post-unityNote/UnityBasic/使用Line Renderer组件绘制图形" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" target="_blank">使用Line Renderer组件绘制图形</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" class="archive-article-date">
+        <time datetime="2021-10-19T07:14:51.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="线渲染器-Line-Renderer"><a href="#线渲染器-Line-Renderer" class="headerlink" title="线渲染器 (Line Renderer)"></a>线渲染器 (Line Renderer)</h1><p>线渲染器 (Line Renderer) 组件采用 3D 空间中两个或多个点的数组，在每个点之间绘制一条直线。因此，单个线渲染器组件可用于绘制从简单直线到复杂螺旋线的任何线条。这条线始终是连续的；如果需要绘制两条或更多完全独立的线，则应使用多个游戏对象，每个游戏对象都要有自己的线渲染器。</p>
+<p>线渲染器不渲染一个像素宽的线。此渲染器将渲染宽度采用世界单位且可纹理化的公告牌线（总是面向摄像机的多边形）。线渲染器使用与<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-TrailRenderer.html">轨迹渲染器 (Trail Renderer)</a> 相同的线渲染算法。</p>
+<p><img src="resources/B510BE5F5DAEA977D6B988EC4A38C78B.png"></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>属性功能Cast Shadows确定线是否投射阴影，是应从线的一侧还是两侧投射阴影，或线是否应仅投射阴影而不以其他方式进行绘制。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-shadowCastingMode.html">Renderer.shadowCastingMode</a> 以了解更多信息。Receive Shadows如果启用此属性，线将接受阴影。Motion Vectors选择要用于此线渲染器的运动矢量 (Motion Vector) 类型。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-motionVectorGenerationMode.html">Renderer.motionVectorGenerationMode</a> 以了解更多信息。Materials这些属性描述了用于渲染线的材质数组。对于数组中的每种材质，该线将被绘制一次。Light Parameters在此处引用<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-LightmapParameters.html">光照贴图参数 (Lightmap Parameters)</a> 资源以使线与全局光照系统交互。Positions这些属性描述了要连接的 Vector3 点数组。Use World Space如果启用此属性，这些点将视为世界空间坐标，而不受此组件附加到的游戏对象的变换所影响。Loop启用此属性可连接线的第一个和最后一个位置。这样会形成闭环。Width定义宽度值和曲线以控制线在其开始和结束之间的各个点处的宽度。曲线仅在每个顶点处采样，因此其精度受到线中存在的顶点数量的限制。线的总宽度由宽度值控制。Color定义一个渐变来控制线沿其长度的颜色。Corner Vertices此属性指示在绘制线中的角时使用多少个额外顶点。增加此值可使线的角显得更圆。End Cap Vertices此属性指示使用多少个额外顶点在线上创建端盖。增加此值可使线的端盖显得更圆。Alignment设置为 View 可使线面向摄像机，或设置为 Local 根据线的变换组件的方向对齐。Texture Mode控制如何将纹理应用于线。使用 Stretch 可沿着线的整个长度应用纹理贴图，或使用 Wrap 使纹理沿着线的长度重复。应使用材质 (Material) 中的 Tiling 参数来控制重复率。Shadow Bias沿着光照方向移动阴影以消除因使用公告牌几何体来模拟体积而导致的阴影瑕疵。Generate Lighting Data如果启用此属性（选中复选框），则在构建线几何体时包含法线和切线。这样允许它使用具有场景光照的材质，例如通过标准着色器，或通过使用自定义着色器。Sorting Layer渲染器排序图层的名称。Order in Layer此渲染器在排序图层中的顺序。Light Probes基于探针的光照插值模式。Reflection Probes如果启用此属性，并且场景中存在反射探针，则会为此线渲染器拾取反射纹理，并将此纹理设置为内置的着色器 uniform 变量。</p>
+    
+    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-unityNote/UnityBasic/DoTween笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1061,95 +1152,6 @@
 
 
   
-    <article id="post-cSharpNote/CSharp高级进阶教程_03_阶段练习01——课程作业(泛型  反射  特性)_通用类库封装" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_03_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A001%E2%80%94%E2%80%94%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A(%E6%B3%9B%E5%9E%8B%20%20%E5%8F%8D%E5%B0%84%20%20%E7%89%B9%E6%80%A7)_%E9%80%9A%E7%94%A8%E7%B1%BB%E5%BA%93%E5%B0%81%E8%A3%85/" target="_blank">C#高级进阶教程_03_阶段练习01——课程作业(泛型  反射  特性)_通用类库封装</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_03_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A001%E2%80%94%E2%80%94%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A(%E6%B3%9B%E5%9E%8B%20%20%E5%8F%8D%E5%B0%84%20%20%E7%89%B9%E6%80%A7)_%E9%80%9A%E7%94%A8%E7%B1%BB%E5%BA%93%E5%B0%81%E8%A3%85/" class="archive-article-date">
-        <time datetime="2021-10-19T06:54:41.193Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>课程作业(泛型 反射 特性)</strong></p>
-<hr>
-    
-    <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_03_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A001%E2%80%94%E2%80%94%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A(%E6%B3%9B%E5%9E%8B%20%20%E5%8F%8D%E5%B0%84%20%20%E7%89%B9%E6%80%A7)_%E9%80%9A%E7%94%A8%E7%B1%BB%E5%BA%93%E5%B0%81%E8%A3%85/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C#高级进阶课程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_03_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A001%E2%80%94%E2%80%94%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A(%E6%B3%9B%E5%9E%8B%20%20%E5%8F%8D%E5%B0%84%20%20%E7%89%B9%E6%80%A7)_%E9%80%9A%E7%94%A8%E7%B1%BB%E5%BA%93%E5%B0%81%E8%A3%85/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
@@ -1164,7 +1166,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 <a href="http://ljk3d.com/" target="_blank">梁俊可</a>
+    		&copy; 2021-2022 <a href="http://ljk3d.com/" target="_blank">梁俊可</a>
     	</div>
       	<div class="footer-right">
 			

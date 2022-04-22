@@ -92,7 +92,7 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
+				<li><a href="/ljkResume01/" target="_blank">个人简历</a></li>
 			
 				<li><a href="/ljkResume02/" target="_blank">动态简历</a></li>
 			
@@ -202,7 +202,7 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/ljkResume01/">个人简历</a></li>
 		        
 					<li style="width: 50%"><a href="/ljkResume02/">动态简历</a></li>
 		        
@@ -223,6 +223,73 @@
             
 
   
+    <article id="post-unityNote/UnityUIFramework/deVoid UIFramework MANUAL" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="UI-Framework-Manual"><a href="#UI-Framework-Manual" class="headerlink" title="UI Framework: Manual"></a>UI Framework: Manual</h1><h2 id="Part-1-Structure"><a href="#Part-1-Structure" class="headerlink" title="Part 1: Structure"></a>Part 1: Structure</h2><p>The main entry point in the system is the <em><strong>UI Frame</strong></em>. It is the way you interact with the framework from your code. Internally, it serves as a facade to the <em><strong>UI Layers</strong></em>. Layers are responsible for containing and handling <em><strong>Screens</strong></em>. Screens can be of two types:</p>
+<ul>
+<li><p><em><strong>Panels</strong></em> are ad-hoc pieces of UI that are <strong>not bound to a specific history</strong> and <strong>can be visible and interactable at the same time</strong>. </p>
+<p>Eg: a HUD could be a <em>Panel</em>.(HUD更倾向信息展示,UI更倾向交互)</p>
+</li>
+<li><p><em><strong>Windows</strong></em> are elements that usually fill up most of your display’s real estate, follow a history and are the main interaction spots at a given time: you won’t ever have two windows being interactable at the same time, but <strong>you might have one or more <em>Panels</em> and a single <em>Window</em> open</strong>.</p>
+</li>
+<li><p><em><strong>Pop-Ups</strong></em> are a special case of Window that works the same way, but is displayed on top of the rest of the UI - it’s a modal window.</p>
+</li>
+</ul>
+<p>Screens can contain one or more <em><strong>Widgets</strong></em> which are self-contained components that can be reused across multiple scenarios. <em><strong>Layers</strong></em> can also make use of <em><strong>Para-Layers</strong></em>（参数层）, which are used to organize render order and display priority. In the default implementation, there is one Window para-layer (which is used to house pop-ups) and multiple Panel para-layers.</p>
+<p>For a Screen to be usable by the Framework, <u>it needs to be <em><strong>Registered</strong></em> to a Layer</u>. This operation is performed via the <em><strong>UI Frame</strong></em>.</p>
+<p>You can use the built-in <em><strong>UI Settings</strong></em> file to rig your UI Frame prefab and the screens to be registered, then get a fully initialized instance.</p>
+<p>Since every UI Frame is its own self contained structure, this means that you can have multiple complete UIs at the same time, including in worldspace. You can also register it as a centralized service if it better fits your purpose, or you can mix and match, eg: you have a centralized UI that is for the general Game UI, that is permanent, but you have separate UIs for players that support split screen and have their own specific logic, and get created and destroyed with the players.</p>
+<p>The best way to understand these concepts is by checking them out in practice, so make sure to take a look at the <a target="_blank" rel="noopener" href="https://github.com/yankooliveira/uiframework_examples">examples repo</a>. If you’re feeling adventurous, you can always read the <a target="_blank" rel="noopener" href="http://yankooliveira.com/index.php/2017/12/27/uisystem/">blog post</a> where I originally described the rationale for the architecture in detail.</p>
+    
+    <a class="article-more-a" href="/2022/04/22/unityNote/UnityUIFramework/deVoid%20UIFramework%20MANUAL/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/04/22/unityNote/UnityUIFramework/deVoid%20UIFramework%20MANUAL/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-unityNote/UnityUIFramework/deVoid UIFramework使用说明" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -237,64 +304,9 @@
 <p><strong>Step 2:</strong></p>
 <p> Get a reference to your UI Frame and register some screens</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.RegisterScreen(<span class="string">&quot;YourScreenId&quot;</span>, yourScreenPrefab);</span><br></pre></td></tr></table></figure>
-
-<p><strong>Step 3:</strong></p>
-<p> Show your screens</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.OpenWindow(<span class="string">&quot;YourWindowId&quot;</span>);</span><br><span class="line">uiFrame.ShowPanel(<span class="string">&quot;YourPanelId&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>Or, if you have some data payload</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uiFrame.OpenWindow(<span class="string">&quot;YourWindowId&quot;</span>, yourWindowProperties);</span><br><span class="line">uiFrame.ShowPanel(<span class="string">&quot;YourPanelId&quot;</span>, yourPanelProperties);</span><br></pre></td></tr></table></figure>
-
-<p><strong>Step 4:</strong></p>
-<p> Now that you’re familiar with the API, right click on project view</p>
-<p>** Create -&gt; deVoid UI -&gt; UI Settings**</p>
-<p> Rig your UI Frame prefab as the UI Template, drag all your screens in the Screens To Register list and simply do</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uiFrame = yourUiSettings.CreateUIInstance();</span><br></pre></td></tr></table></figure>
-
-<p>Which will give you a new UI Frame instance and automatically do Step 2 for you.</p>
-<p>Make sure to check out the examples repo and read the manual!</p>
-<p><strong>What?</strong></p>
-<p>The deVoid UI Framework (or devUI for short) is a simple architecture for UI handling and navigation in Unity. It enforces one simple rule: you can never directly access the internals of your UI code from external code, but anything else is fair game. You want to read data from Singletons from inside your UI? Sure. You want to sandwich mediators, views and controllers and do MVC by the book? Go for it. You want to skip the data passing functionalities and use your own MVVM framework? Power to you. Do whatever floats your boat and works best for your needs.</p>
-<p><strong>Why?</strong></p>
-<p>Having worked with mobile F2P games for years, I’ve done my fair share of UI. And I hate doing UI.</p>
-<p>So I figured the more people learn how to do it, the smaller the chances that I ever have to do it again 🌈</p>
-<p>(Also, sharing is caring and I’m secretly a hippie)</p>
-<p><strong>Features</strong></p>
-<p>Simple to extend and customize</p>
-<p>Support for navigation history and queuing</p>
-<p>Transition animations</p>
-<p>Blocking user input while screens transition (especially handy for touch input)</p>
-<p>Priority and layering</p>
-<p>Focus on type safety and flexibility</p>
-<p>Known Limitations</p>
-<p>No built in support for controller navigation</p>
-<p><strong>二、deVoid UIFramework案例</strong></p>
-<p>![IMAGE](resources/FEFF2F9DF1BF974B97C5066050BB8752.jpg =1610x964)</p>
-<p>这个项目试图演示deVoidUI框架的功能。</p>
-<p>这些例子</p>
-<ul>
-<li>使用<strong>Signals</strong>作为<strong>消息传递系统</strong>，</li>
-<li>DOTween作为补间库，</li>
-<li>来自TheNounProject.com的图标。</li>
-</ul>
-<p> 框架试图尽可能<strong>不知道如何实现屏幕</strong>，但它试图实施一个非常具体的规则:<strong>您不能从外部访问内部UI代码</strong>。</p>
-<p> 除此之外，所有的事情都是公平的——你是知道必要的人和你的代码库应该有多复杂的人。</p>
-<p> 尽管它对于初学者来说足够简单，对于产品来说足够健壮，但在您的项目中使用它之前，我建议您阅读<a target="_blank" rel="noopener" href="https://github.com/yankooliveira/uiframework%E7%9A%84%E6%89%8B%E5%86%8C%E3%80%82">https://github.com/yankooliveira/uiframework的手册。</a></p>
-<p> 单击下面<strong>导航面板</strong>中的按钮查看一些示例。</p>
-<p><img src="UnityUIFramework/resources/4258C41A1D2A43FB15DA81F18227A4D5.png"></p>
-<p>当您试图显示面板或打开窗口时，您可以选择以<strong>Properties(属性)<strong>的形式</strong>传递数据</strong>有效负载。这是你的**ScreenController(屏幕控制器)**实现的强类型。</p>
-<p>试着选择Assets文件夹中的<strong>PlayerData ScriptableObject并更改其值</strong>。</p>
-<p><img src="UnityUIFramework/resources/48C2211FE70DFD04966C70955298EF45.png"><br>如果您不习惯将有效负载传递给UI，这可能看起来太麻烦了，但它可以帮助您分离关注点并减少耦合。而且，没有什么可以阻止您将非常动态的参数传入有效负载。</p>
-<p>一个例子是这个Warning Pop-Up，它有多种格式，这取决于您传递给它的有效负载。</p>
-<p>还要注意，弹出窗口本身没有任何代码来暗化屏幕;这些都是由UI框架本身控制的(因为这个预制件被设置为弹出式)。</p>
-<p>点击下面的按钮几次，然后检查<strong>ConfirmationPopupController.cs</strong>中的代码。</p>
-<p><img src="resources/4DDADC6C4CE0386F6AED057DEB3F514C.png" alt="555.png"></p>
-<p>UI框架并不真正关心你如何处理这个(事实上，你可以在Worldspace UI中有一个<strong>UI Screenspace Camera</strong>。</p>
-<p>这样做的好处是，你可以直接在UI预制件中添加其他Unity元素，如3d对象、线条渲染器和粒子系统。</p>
-<p>你会受限于UI是使用一个Ortographic相机,你需要调整着色器如果你需要透明,但是它可以节省你的成本使用RenderTextures和允许你有诸如后处理效果直接在UI相机。</p>
-<p><img src="resources/67619A77FD6690D0B37147E3A46335C5.png" alt="666.png"></p>
-<p>使用Screenspace-Camera的一个警告是，你所有的通常用于投影到Screenspace Overlay UI的操作都需要一个额外的跳跃:你需要从</p>
-
+    
+    <a class="article-more-a" href="/2022/04/19/unityNote/UnityUIFramework/deVoid%20UIFramework%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/#more">more >></a>
+    
     
 
     
@@ -1153,115 +1165,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/10/19/webNote/htmlAndCss/03_HTML%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-webNote/htmlAndCss/04_CSS入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/webNote/htmlAndCss/04_CSS%E5%85%A5%E9%97%A8/" target="_blank">01_前端开发课程介绍与课程安排_录制于2018 08 27</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/webNote/htmlAndCss/04_CSS%E5%85%A5%E9%97%A8/" class="archive-article-date">
-        <time datetime="2021-10-19T07:32:31.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="1、css-概述"><a href="#1、css-概述" class="headerlink" title="1、css 概述"></a><strong>1、css 概述</strong></h2><p>** **为了让网页元素的样式更加丰富，也为了让网页的内容和样式能拆分开，css由此思想诞生。</p>
-<ul>
-<li><strong>CSS</strong>： <em><strong>Cascading Style Sheets</strong></em>** ** <strong>层叠样式表</strong><ul>
-<li><strong>html 中大部分表现样式的标签废弃不用了</strong></li>
-<li><strong>html只负责文档的结构和内容，表现形式完全交给css</strong></li>
-<li><strong>html文档更加简洁</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="2、css-基本语法"><a href="#2、css-基本语法" class="headerlink" title="2、css 基本语法"></a><strong>2、css 基本语法</strong></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">选择器 &#123;属性:值; 属性:值; 属性:值;&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><strong>选择器</strong>是将样式和页面元素关联起来的名称</li>
-<li><strong>属性</strong>是希望设置的样式属性<ul>
-<li>每一个属性有一个或多个值</li>
-<li>属性和之间用冒号</li>
-<li>一个属性和值与下一个属性和值之间用分号</li>
-<li>最好一个分号可以省略</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  样式中注释写法，单行或多行注释 */</span></span><br><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">background</span>:red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/19/webNote/htmlAndCss/04_CSS%E5%85%A5%E9%97%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">HtmlAndCSS</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/webNote/htmlAndCss/04_CSS%E5%85%A5%E9%97%A8/">展开全文 >></a>
     </p>
     
 

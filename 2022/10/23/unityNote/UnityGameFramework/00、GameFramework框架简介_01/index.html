@@ -10,17 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="三维数字孪生,虚拟仿真,VR全景,党建开发">
-    <meta name="description" content="Unity开发"> -->
-  
-  <meta name="description" content="Unity开发">
-<meta property="og:type" content="website">
+  <meta name="description" content="Game Framework 简介Game Framework 是一个基于 Unity 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。 在最新的 Game Framework 版本中，包含以下 19 个内置模块，后续我们还将开发更多的扩展模块供开发者使用。  全局配置 (Config) - 存储一些全局的只读的游戏配置，如玩家初始速度、">
+<meta property="og:type" content="article">
 <meta property="og:title" content="梁俊可_个人博客">
-<meta property="og:url" content="http://ljk3d.com/page/3/index.html">
+<meta property="og:url" content="http://ljk3d.com/2022/10/23/unityNote/UnityGameFramework/00%E3%80%81GameFramework%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B_01/index.html">
 <meta property="og:site_name" content="梁俊可_个人博客">
-<meta property="og:description" content="Unity开发">
+<meta property="og:description" content="Game Framework 简介Game Framework 是一个基于 Unity 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。 在最新的 Game Framework 版本中，包含以下 19 个内置模块，后续我们还将开发更多的扩展模块供开发者使用。  全局配置 (Config) - 存储一些全局的只读的游戏配置，如玩家初始速度、">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-23T09:18:26.704Z">
+<meta property="article:modified_time" content="2022-10-23T09:18:26.704Z">
 <meta property="article:author" content="梁俊可">
 <meta property="article:tag" content="三维数字孪生,虚拟仿真,VR全景,党建开发">
 <meta name="twitter:card" content="summary">
@@ -220,73 +218,170 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-unityNote/UnityBasic/04_FariGUI" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-unityNote/UnityGameFramework/00、GameFramework框架简介_01" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/" target="_blank">04_FariGUI</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    
-    
+    <h2 id="Game-Framework-简介"><a href="#Game-Framework-简介" class="headerlink" title="Game Framework 简介"></a>Game Framework 简介</h2><p>Game Framework 是一个基于 Unity 引擎的游戏框架，主要对游戏开发过程中常用模块进行了封装，很大程度地规范开发过程、加快开发速度并保证产品质量。</p>
+<p>在最新的 Game Framework 版本中，包含以下 <strong>19 个内置模块</strong>，后续我们还将开发更多的扩展模块供开发者使用。</p>
+<ol>
+<li><strong>全局配置 (Config)</strong> - 存储一些全局的只读的游戏配置，如玩家初始速度、游戏初始音量等。</li>
+<li><strong>数据结点 (Data Node)</strong> - 将任意类型的数据以树状结构的形式进行保存，用于管理游戏运行时的各种数据。</li>
+<li><strong>数据表 (Data Table)</strong> - 可以将游戏数据以表格（如 Microsoft Excel）的形式进行配置后，使用此模块使用这些数据表。数据表的格式是可以自定义的。</li>
+<li><strong>调试器 (Debugger)</strong> - 当游戏在 Unity 编辑器中运行或者以 Development 方式发布运行时，将出现调试器窗口，便于查看运行时日志、调试信息等。用户还可以方便地将自己的功能注册到调试器窗口上并使用。</li>
+<li><strong>下载 (Download)</strong> - 提供下载文件的功能，支持断点续传，并可指定允许几个下载器进行同时下载。更新资源时会主动调用此模块。</li>
+<li><strong>实体 (Entity)</strong> - 我们将游戏场景中，动态创建的一切物体定义为实体。此模块提供管理实体和实体组的功能，如显示隐藏实体、挂接实体（如挂接武器、坐骑，或者抓起另一个实体）等。实体使用结束后可以不立刻销毁，从而等待下一次重新使用。</li>
+<li><strong>事件 (Event)</strong> - 游戏逻辑监听、抛出事件的机制。Game Framework 中的很多模块在完成操作后都会抛出内置事件，监听这些事件将大大解除游戏逻辑之间的耦合。用户也可以定义自己的游戏逻辑事件。</li>
+<li><strong>文件系统 (File System)</strong> - 虚拟文件系统使用类似磁盘的概念对零散文件进行集中管理，优化资源加载时产生的内存分配，甚至可以对资源进行局部片段加载，这些都将极大提升资源加载时的性能。</li>
+<li><strong>有限状态机 (FSM)</strong> - 提供创建、使用和销毁有限状态机的功能，一些适用于有限状态机机制的游戏逻辑，使用此模块将是一个不错的选择。</li>
+<li><strong>本地化 (Localization)</strong> - 提供本地化功能，也就是我们平时所说的多语言。Game Framework 在本地化方面，不但支持文本的本地化，还支持任意资源的本地化，比如游戏中释放烟花特效也可以做出几个多国语言的版本，使得中文版里是“新年好”字样的特效，而英文版里是“Happy New Year”字样的特效。</li>
+<li><strong>网络 (Network)</strong> - 提供使用 Socket 长连接的功能，当前我们支持 TCP 协议，同时兼容 IPv4 和 IPv6 两个版本。用户可以同时建立多个连接与多个服务器同时进行通信，比如除了连接常规的游戏服务器，还可以连接语音聊天服务器。如果想接入 ProtoBuf 之类的协议库，只要派生自 Packet 类并实现自己的消息包类即可使用。</li>
+<li><strong>对象池 (Object Pool)</strong> - 提供对象缓存池的功能，避免频繁地创建和销毁各种游戏对象，提高游戏性能。除了 Game Framework 自身使用了对象池，用户还可以很方便地创建和管理自己的对象池。</li>
+<li><strong>流程 (Procedure)</strong> - 是贯穿游戏运行时整个生命周期的有限状态机。通过流程，将不同的游戏状态进行解耦将是一个非常好的习惯。对于网络游戏，你可能需要如检查资源流程、更新资源流程、检查服务器列表流程、选择服务器流程、登录服务器流程、创建角色流程等流程，而对于单机游戏，你可能需要在游戏选择菜单流程和游戏实际玩法流程之间做切换。如果想增加流程，只要派生自 ProcedureBase 类并实现自己的流程类即可使用。</li>
+<li><strong>资源 (Resource)</strong> - 为了保证玩家的体验，我们不推荐再使用同步的方式加载资源，由于 Game Framework 自身使用了一套完整的异步加载资源体系，因此只提供了异步加载资源的接口。不论简单的数据表、本地化字典，还是复杂的实体、场景、界面，我们都将使用异步加载。同时，Game Framework 提供了默认的内存管理策略（当然，你也可以定义自己的内存管理策略）。多数情况下，在使用 GameObject 的过程中，你甚至可以不需要自行进行 Instantiate 或者是 Destroy 操作。</li>
+<li><strong>场景 (Scene)</strong> - 提供场景管理的功能，可以同时加载多个场景，也可以随时卸载任何一个场景，从而很容易地实现场景的分部加载。</li>
+<li><strong>配置 (Setting)</strong> - 以键值对的形式存储玩家数据，对 UnityEngine.PlayerPrefs 进行封装，也可以将这些数据直接存储在磁盘上。</li>
+<li><strong>声音 (Sound)</strong> - 提供管理声音和声音组的功能，用户可以自定义一个声音的音量、是 2D 声音还是 3D 声音，甚至是直接绑定到某个实体上跟随实体移动。</li>
+<li><strong>界面 (UI)</strong> - 提供管理界面和界面组的功能，如显示隐藏界面、激活界面、改变界面层级等。不论是 Unity 内置的 uGUI 还是其它类型的 UI 插件（如 NGUI），只要派生自 UIFormLogic 类并实现自己的界面类即可使用。界面使用结束后可以不立刻销毁，从而等待下一次重新使用。</li>
+<li><strong>Web 请求 (Web Request)</strong> - 提供使用短连接的功能，可以用 Get 或者 Post 方法向服务器发送请求并获取响应数据，可指定允许几个 Web 请求器进行同时请求。</li>
+</ol>
 
     
 
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          梁俊可
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://ljk3d.com/2022/10/23/unityNote/UnityGameFramework/00、GameFramework框架简介_01/" title="" target="_blank">http://ljk3d.com/2022/10/23/unityNote/UnityGameFramework/00、GameFramework框架简介_01/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          梁俊可工作室
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
   <div class="article-info article-info-index">
     
     
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
+    
 
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/04_FariGUI/">展开全文 >></a>
-    </p>
     
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://ljk3d.com/2022/10/23/unityNote/UnityGameFramework/00%E3%80%81GameFramework%E6%A1%86%E6%9E%B6%E7%AE%80%E4%BB%8B_01/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/04/22/unityNote/UnityUIFramework/deVoid%20UIFramework%20MANUAL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -307,848 +402,45 @@
 
 
 
-  
-    <article id="post-unityNote/UnityBasic/编辑器扩展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/" target="_blank">编辑器扩展</a>
-  
-    </h1>
-  
 
+<div id="SOHUCS" sid="unityNote/UnityGameFramework/00、GameFramework框架简介_01" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "true",
+        conf: "true"
+    });
+</script>
+</script>
 
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.901Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
 
-  
-  
-    
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35361471/article/details/84713382">https://blog.csdn.net/qq_35361471/article/details/84713382</a></p>
-<h3 id=""><a href="#" class="headerlink" title="****"></a>****</h3><h2 id="一、编辑器开发入门"><a href="#一、编辑器开发入门" class="headerlink" title="一、编辑器开发入门"></a>一、编辑器开发入门</h2><h3 id="-1"><a href="#-1" class="headerlink" title="****"></a>****</h3><h3 id="编辑器扩展概念"><a href="#编辑器扩展概念" class="headerlink" title="编辑器扩展概念"></a><strong>编辑器扩展概念</strong></h3><hr>
-<p><strong>Unity编辑器扩展</strong>是对现有的Unity进行自定义功能扩展的一种方法，可以简化一些重复的开发动作，也可以用于制作插件。</p>
-<p><strong>Unity的编辑器扩展</strong>绝大部分是用于unity的编辑器模式下，我们扩展的方法是为了提高开发效率。</p>
-<p>但这些方法在游戏运行时并没有作用，不需要将他们打包进工程，所以我们需要把这些不需要打包的资源和脚本放在名字是Editor的文件下，这个文件可以是根目录也可以是子目录。</p>
-    
-    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/#more">more >></a>
-    
-    
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname =
+    'true'; // required: replace example with your forum shortname
 
-    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 
-    
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by
+      Disqus.</a></noscript>
+</section>
 
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-    
 
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95/">展开全文 >></a>
-    </p>
-    
 
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
 
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
 
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/使用Line Renderer组件绘制图形" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" target="_blank">使用Line Renderer组件绘制图形</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="线渲染器-Line-Renderer"><a href="#线渲染器-Line-Renderer" class="headerlink" title="线渲染器 (Line Renderer)"></a>线渲染器 (Line Renderer)</h1><p>线渲染器 (Line Renderer) 组件采用 3D 空间中两个或多个点的数组，在每个点之间绘制一条直线。因此，单个线渲染器组件可用于绘制从简单直线到复杂螺旋线的任何线条。这条线始终是连续的；如果需要绘制两条或更多完全独立的线，则应使用多个游戏对象，每个游戏对象都要有自己的线渲染器。</p>
-<p>线渲染器不渲染一个像素宽的线。此渲染器将渲染宽度采用世界单位且可纹理化的公告牌线（总是面向摄像机的多边形）。线渲染器使用与<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-TrailRenderer.html">轨迹渲染器 (Trail Renderer)</a> 相同的线渲染算法。</p>
-<p><img src="resources/B510BE5F5DAEA977D6B988EC4A38C78B.png"></p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>属性功能Cast Shadows确定线是否投射阴影，是应从线的一侧还是两侧投射阴影，或线是否应仅投射阴影而不以其他方式进行绘制。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-shadowCastingMode.html">Renderer.shadowCastingMode</a> 以了解更多信息。Receive Shadows如果启用此属性，线将接受阴影。Motion Vectors选择要用于此线渲染器的运动矢量 (Motion Vector) 类型。请参阅脚本 API 参考文档中的 <a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Renderer-motionVectorGenerationMode.html">Renderer.motionVectorGenerationMode</a> 以了解更多信息。Materials这些属性描述了用于渲染线的材质数组。对于数组中的每种材质，该线将被绘制一次。Light Parameters在此处引用<a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2018.4/Manual/class-LightmapParameters.html">光照贴图参数 (Lightmap Parameters)</a> 资源以使线与全局光照系统交互。Positions这些属性描述了要连接的 Vector3 点数组。Use World Space如果启用此属性，这些点将视为世界空间坐标，而不受此组件附加到的游戏对象的变换所影响。Loop启用此属性可连接线的第一个和最后一个位置。这样会形成闭环。Width定义宽度值和曲线以控制线在其开始和结束之间的各个点处的宽度。曲线仅在每个顶点处采样，因此其精度受到线中存在的顶点数量的限制。线的总宽度由宽度值控制。Color定义一个渐变来控制线沿其长度的颜色。Corner Vertices此属性指示在绘制线中的角时使用多少个额外顶点。增加此值可使线的角显得更圆。End Cap Vertices此属性指示使用多少个额外顶点在线上创建端盖。增加此值可使线的端盖显得更圆。Alignment设置为 View 可使线面向摄像机，或设置为 Local 根据线的变换组件的方向对齐。Texture Mode控制如何将纹理应用于线。使用 Stretch 可沿着线的整个长度应用纹理贴图，或使用 Wrap 使纹理沿着线的长度重复。应使用材质 (Material) 中的 Tiling 参数来控制重复率。Shadow Bias沿着光照方向移动阴影以消除因使用公告牌几何体来模拟体积而导致的阴影瑕疵。Generate Lighting Data如果启用此属性（选中复选框），则在构建线几何体时包含法线和切线。这样允许它使用具有场景光照的材质，例如通过标准着色器，或通过使用自定义着色器。Sorting Layer渲染器排序图层的名称。Order in Layer此渲染器在排序图层中的顺序。Light Probes基于探针的光照插值模式。Reflection Probes如果启用此属性，并且场景中存在反射探针，则会为此线渲染器拾取反射纹理，并将此纹理设置为内置的着色器 uniform 变量。</p>
-    
-    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/%E4%BD%BF%E7%94%A8Line%20Renderer%E7%BB%84%E4%BB%B6%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/DoTween笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/" target="_blank">DoTween笔记</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.853Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="入门理解：补间动画"><a href="#入门理解：补间动画" class="headerlink" title="入门理解：补间动画"></a><strong>入门理解：补间动画</strong></h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Transform gameObject;</span><br><span class="line"><span class="keyword">public</span> Vector3 myValue;</span><br><span class="line"><span class="comment">// Start is called before the first frame update</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Vector3 myPos = gameObject.position;</span><br><span class="line">    myValue =<span class="keyword">new</span> Vector3(myPos.x,myPos.y,myPos.z) ;</span><br><span class="line">    <span class="comment">//对变量动画（通过差值的方式修改一个值的变化，渐变过去）</span></span><br><span class="line">    DOTween.To(() =&gt; myValue, x =&gt; myValue = x, <span class="keyword">new</span> Vector3(<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>),<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Update is called once per frame</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    gameObject.position = myValue;<span class="comment">//每一帧的值与myValue的值保持一样。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/DoTween%E7%AC%94%E8%AE%B0/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/InventorySystem" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/InventorySystem/" target="_blank">InventorySystem</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/InventorySystem/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.849Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/InventorySystem/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/Play Maker有限状态机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/Play%20Maker%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/" target="_blank">Play Maker有限状态机</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/Play%20Maker%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.846Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/Play%20Maker%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/Shader着色器开发——01基础入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9401%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" target="_blank">Shader着色器开发——01基础入门</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9401%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.843Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>Unity中的GameObject（游戏物体）由Compent（组件）组成。</strong></p>
-<p>**</p>
-<p>**<br>**</p>
-<hr>
-<p><strong>GameObject<strong><strong>（游戏物体）一般有</strong></strong>两大Compent组件：</strong></p>
-<hr>
-<ul>
-<li>** Mesh Filter（网格过滤器）**: 存储一个Mesh（网格，模型的网格，就是模型由哪些三角面组成，组成一个什么样子的模型，三角面的一些顶点信息。）</li>
-<li>** Mesh Renderer（网格渲染器）**: 用来渲染一个模型的外观，按照mesh给皮肤，颜色。<ul>
-<li>Mesh Renderer 是通过 Material（材质）控制模型渲染的样子。** <strong><strong>Material（</strong></strong>材质）= Shader（着色器）+ Map（贴图）**<ul>
-<li>shader：材质特性，反光/光滑。Map：表面颜色/纹理。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>**</p>
-<p>本课程目的可达到：<strong>了解基本使用Shader。</strong></p>
-    
-    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9401%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9401%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-unityNote/UnityBasic/Shader着色器开发——02光照模型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9402%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" target="_blank">Shader着色器开发——02光照模型</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9402%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2021-10-19T07:14:51.833Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="一、光照模型概念"><a href="#一、光照模型概念" class="headerlink" title="一、光照模型概念"></a>一、光照模型概念</h3><hr>
-<p><strong>1、什么是光照模型？</strong></p>
-<p>光照模型是一种算法/公式，使用这个公式来计算光照效果（光照到每个点上效果）。</p>
-<p><strong>2、一些常用的方法：</strong></p>
-<ul>
-<li><p>normalize() 用来把一个向量，单位化（原来方向保持不变，长度变为1）</p>
-</li>
-<li><p>max() 用来取得函数中最大的一个</p>
-</li>
-<li><p>dot 用来取得<strong>两个向量的点积</strong></p>
-</li>
-<li><p>_WorldSpaceLightPos0 <strong>取得平行光的位置</strong></p>
-</li>
-<li><p>_LightColor0 <strong>取得平行光的颜色</strong></p>
-</li>
-<li><p>UNITY_LIGHTMODEL_AMBIENT <strong>用来获取环境光</strong></p>
-</li>
-<li><p>UNITY_MATRIX_MVP 这个矩阵用来把一个坐标从模型空间转换到剪裁空间（屏幕空间相机锥形空间）</p>
-</li>
-<li><p>_World2Object 这个矩阵用来把一个方向从世界空间转换到模型空间</p>
-    
-    <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9402%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Unity基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/unityNote/UnityBasic/Shader%E7%9D%80%E8%89%B2%E5%99%A8%E5%BC%80%E5%8F%91%E2%80%94%E2%80%9402%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cSharpNote/CSharp高级进阶教程_00_设计模式_面向对象的第四大特性——抽象_虚方法&amp;抽象方法、抽象类&amp;接口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_00_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AC%AC%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1_%E8%99%9A%E6%96%B9%E6%B3%95&%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB&%E6%8E%A5%E5%8F%A3/" target="_blank">C#高级进阶教程_00_设计模式_面向对象的第四大特性——抽象_虚方法&amp;抽象方法、抽象类&amp;接口</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_00_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AC%AC%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1_%E8%99%9A%E6%96%B9%E6%B3%95&%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB&%E6%8E%A5%E5%8F%A3/" class="archive-article-date">
-        <time datetime="2021-10-19T06:54:41.238Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>** 4-5个月的课程（录制于2019年4月15日——2019年8月15日）**</p>
-<p>程序设计，第一堂课：首先搞懂面向对象的思想。（POP-OOP-AOP-DDD）</p>
-<p><strong>POP思想：</strong></p>
-<p>POP:面向过程编码，一路执行下去，不好扩展。</p>
-<hr>
-<p><strong>OOP思想</strong>：</p>
-    
-    <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_00_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AC%AC%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1_%E8%99%9A%E6%96%B9%E6%B3%95&%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB&%E6%8E%A5%E5%8F%A3/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C#高级进阶课程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_00_%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AC%AC%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1_%E8%99%9A%E6%96%B9%E6%B3%95&%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E3%80%81%E6%8A%BD%E8%B1%A1%E7%B1%BB&%E6%8E%A5%E5%8F%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-cSharpNote/CSharp高级进阶教程_000_值类型和引用类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_000_%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" target="_blank">C#高级进阶教程_000_值类型和引用类型</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_000_%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2021-10-19T06:54:41.226Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="C-中的值类型和引用类型"><a href="#C-中的值类型和引用类型" class="headerlink" title="C#中的值类型和引用类型"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaodongy/p/7989711.html">C#中的值类型和引用类型</a></h2><p>注：下面的示意图主要是为了辅助理解，不代表内存真实情况。</p>
-<p>**Introduction<br>**</p>
-<p> 类型基础是C#的基础概念，了解类型基础及背后的工作原理更有助于我们在编码的时候明白数据在内存中的分配与传递。C#提供了值类型和引用类型，值类型如struct, 引用类型如class。 这里主要说明一下它们在内存分配与传递上的区别。</p>
-    
-    <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_000_%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C#高级进阶课程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/19/cSharpNote/CSharp%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E6%95%99%E7%A8%8B_000_%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -1188,8 +480,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
